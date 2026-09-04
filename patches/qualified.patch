@@ -1,0 +1,564 @@
+--- a/omlx/scheduler.py
++++ b/omlx/scheduler.py
+@@ -1532,7 +1532,7 @@
+     completion_batch_size: int = 32
+     # Per-forward embedding input chunk size
+     embedding_batch_size: int = 32
+-    prefill_step_size: int = 2048
++    prefill_step_size: int = int(__import__("os").environ.get("FLASH_PREFILL_STEP", "2048"))
+     # When True, long prefills are processed one chunk per step() call,
+     # interleaved with decode steps for already-running requests. This
+     # reduces TTFT for concurrent requests but adds per-step overhead.
+@@ -1755,6 +1755,7 @@
+         # Rust RefCell.  See: https://github.com/huggingface/tokenizers/issues/537
+         self.tokenizer = copy.deepcopy(tokenizer)
+         self.config = copy.copy(config) if config else SchedulerConfig()
++        print("FLASH_SCHEDULER", "prefill_step", self.config.prefill_step_size, "chunked", self.config.chunked_prefill, flush=True)
+         self._stream = stream if stream is not None else _default_generation_stream
+         self._serialize_llama4_requests = _model_declares_llama4(model)
+         if self._serialize_llama4_requests and self.config.max_num_seqs > 1:
+@@ -5024,8 +5025,13 @@
+ 
+         adaptive_prefill = getattr(self, "_minimax_m3_adaptive_prefill", None)
+         if adaptive_prefill is None:
++            import os
+             size = self.config.prefill_step_size
+-            floor = getattr(self, "_qwen35_prefill_floor", 0)
++            initial = int(os.environ.get("FLASH_PREFILL_INITIAL", "0"))
++            if initial and processed_tokens == 0:
++                print("FLASH_INITIAL_PREFILL", initial, "remaining", remaining_tokens, flush=True)
++                return min(initial, remaining_tokens)
++            floor = int(os.environ.get("FLASH_PREFILL_FLOOR", str(getattr(self, "_qwen35_prefill_floor", 0))))
+             if floor and size < floor:
+                 size = floor
+             return size
+--- a/omlx/patches/qwen35_q4_mlp.py
++++ b/omlx/patches/qwen35_q4_mlp.py
+@@ -197,6 +197,65 @@
+     if not _is_supported_affine_linear(linear, x):
+         return linear(x)
+     gs = int(getattr(linear, "group_size", 64))
++    if os.environ.get("FLASH_DENSE_SELECT", "0") == "1" and bits == 6 and x.ndim == 3 and x.shape[1] >= 2048:
++        import json, pathlib
++        global _flash_dense_select
++        if "_flash_dense_select" not in globals():
++            _flash_dense_select = json.loads((pathlib.Path(os.environ["FLASH_RECIPE_ROOT"])/"runtime/dense-select-table.json").read_text())
++        bucket = 3256 if x.shape[1] < 4096 else 8192
++        mode = _flash_dense_select.get(f"{bucket}:{x.shape[-1]}:{linear.weight.shape[0]}", "q6")
++        if mode != "q6":
++            key = "_flash_selected_" + mode
++            weight = getattr(linear, key, None)
++            if weight is None:
++                weight = mx.dequantize(linear.weight, linear.scales, linear.biases, bits=6, group_size=gs)
++                if mode == "dense_fp16": weight = weight.astype(mx.float16)
++                mx.eval(weight)
++                setattr(linear, key, weight)
++            return (x.astype(weight.dtype) @ weight.T).astype(x.dtype)
++    if (os.environ.get("FLASH_QMM_HALF", "0") == "1" and bits == 6
++            and x.ndim == 3 and x.shape[1] >= 1024 and x.dtype == mx.bfloat16):
++        params = getattr(linear, "_flash_qmm_half", None)
++        if params is None:
++            params = (linear.scales.astype(mx.float16), linear.biases.astype(mx.float16))
++            mx.eval(*params)
++            linear._flash_qmm_half = params
++        return qmm(x.astype(mx.float16), linear.weight, *params, variant, gs).astype(x.dtype)
++    cpu_table_path = os.environ.get("FLASH_CPU_TABLE")
++    if cpu_table_path and bits == 6 and gs == 64:
++        import json
++        global _flash_cpu_table, _flash_cpu_cache_bytes
++        if "_flash_cpu_table" not in globals():
++            with open(cpu_table_path) as f: _flash_cpu_table = json.load(f)
++            _flash_cpu_cache_bytes = 0
++        bucket = 3256 if x.shape[-2] < 4096 else 8192
++        key = f"6:{bucket}:{x.shape[-1]}:{linear.weight.shape[0]}"
++        config = _flash_cpu_table.get(key)
++        if config:
++            nc = int(config["cpu_rows"])
++            cache = getattr(linear, "_flash_cpu_parts", None)
++            if cache is None:
++                cache = {}
++                linear._flash_cpu_parts = cache
++            if nc not in cache and _flash_cpu_cache_bytes + nc*x.shape[-1]*2 < 8*1024**3:
++                cw = mx.dequantize(linear.weight[:nc], linear.scales[:nc], linear.biases[:nc],
++                                   group_size=64, bits=6).astype(mx.float16)
++                mx.eval(cw)
++                cache[nc] = (cw, linear.weight[nc:], linear.scales[nc:], linear.biases[nc:])
++                _flash_cpu_cache_bytes += cw.nbytes
++            if nc in cache:
++                from omlx.custom_kernels.qwen35_prefill.fast import qwen35_cpu_fp16_affine_qmm_t
++                return qwen35_cpu_fp16_affine_qmm_t(x, *cache[nc], 6, 8, 64, int(config["threads"]), False)
++    table_path = os.environ.get("FLASH_QMM_TABLE")
++    if table_path and bits == 6 and gs == 64:
++        import json
++        global _flash_qmm_table
++        if "_flash_qmm_table" not in globals():
++            with open(table_path) as f: _flash_qmm_table = json.load(f)
++        t = x.shape[-2]
++        bucket = 2048 if t <= 2048 else (3256 if t < 4096 else 8192)
++        key = f"6:{bucket}:{x.shape[-1]}:{linear.weight.shape[0]}"
++        variant = int(_flash_qmm_table.get(key, variant))
+     return qmm(x, linear.weight, linear.scales, linear.biases, variant, gs)
+ 
+ 
+@@ -372,6 +431,19 @@
+         return orig_linear(linear, x, target_verify)
+ 
+     def patched_linears(linears, x: mx.array, target_verify: bool):
++        if (os.environ.get("FLASH_ANE_GDN", "0") == "1" and not target_verify
++                and x.ndim == 3 and x.shape[1] >= 2048 and linears):
++            from . import qwen35_ane_prefill as ane
++            gdn = ane._GDN_MODULES.get(id(linears[0]))
++            if gdn is not None:
++                state = gdn._omlx_ane_gdn_state
++                output = ane._gdn_backend(gdn, x.astype(state.scales.dtype), target_verify)
++                if output is not None:
++                    output = tuple(value.astype(x.dtype) for value in output)
++                    if not getattr(gdn, "_flash_ane_used", False):
++                        logger.info("FLASH ANE dispatch engaged: shape=%s", x.shape)
++                        gdn._flash_ane_used = True
++                    return output
+         if (
+             x.ndim != 3
+             or x.shape[-2] < min_tokens
+@@ -394,6 +466,11 @@
+ 
+     module._target_verify_linear = patched_linear
+     module._target_verify_linears = patched_linears
++    if os.environ.get("FLASH_QWEN4_LINEAR", "0") == "1":
++        qwen4 = importlib.import_module("mlx_vlm.models.qwen4_exp.language")
++        qwen4._target_verify_linear = patched_linear
++        qwen4._target_verify_linears = patched_linears
++        logger.info("FLASH_QWEN4_LINEAR: rebound prefill aliases, verify fallback retained")
+     module._omlx_q4_prefill_linear_patched = True
+     module._omlx_q4_prefill_linear_original = orig_linear
+     module._omlx_q4_prefill_linears_original = orig_linears
+--- a/omlx/patches/qwen35_gdn_chunked.py
++++ b/omlx/patches/qwen35_gdn_chunked.py
+@@ -67,6 +67,22 @@
+         gated_delta_chunked_metal if impl == "chunked" else gated_delta_blocked_seq
+     )
+ 
++    if os.environ.get("FLASH_PROFILE_DETAIL", "0") == "1":
++        import time
++        _fast_original = fast_prefill
++        _fast_count = [0]
++        def fast_prefill(q, k, v, g, beta, state):
++            if _fast_count[0] >= 40:
++                return _fast_original(q, k, v, g, beta, state)
++            mx.eval(q, k, v, g, beta)
++            if state is not None: mx.eval(state)
++            start = time.perf_counter()
++            result = _fast_original(q, k, v, g, beta, state)
++            mx.eval(*result)
++            print("FLASH_DETAIL_GDN", q.shape, q.dtype, time.perf_counter()-start, flush=True)
++            _fast_count[0] += 1
++            return result
++
+     def gated_delta_update_metal(
+         q, k, v, a, b, A_log, dt_bias, state=None, mask=None, use_kernel=True
+     ):
+--- a/omlx/patches/qwen35_moe_gate_up.py
++++ b/omlx/patches/qwen35_moe_gate_up.py
+@@ -121,6 +121,56 @@
+         if gate_up is None:
+             return orig_call(self, x, indices)
+ 
++        selected_dense = os.environ.get("FLASH_MOE_DENSE_SELECTED", "0") == "1"
++        dense_prefill = ((os.environ.get("FLASH_MOE_DENSE", "0") == "1" or selected_dense)
++                         and x.ndim == 3 and x.shape[1] >= 1024
++                         and isinstance(gate_up, QuantizedSwitchLinear))
++        dense_used = dense_remap = None
++        if dense_prefill and selected_dense:
++            import numpy as np
++            used = np.unique(np.asarray(indices)).astype(np.int32)
++            if used.size > 384:
++                dense_prefill = False
++            else:
++                dense_used = mx.array(used)
++                remap = np.zeros(gate_up.weight.shape[0], dtype=np.int32)
++                remap[used] = np.arange(used.size)
++                dense_remap = mx.array(remap)
++        fp16_prefill = (os.environ.get("FLASH_PREFILL_FP16", "0") == "1"
++                        and x.ndim == 3 and x.shape[1] >= 1024 and x.dtype == mx.bfloat16)
++        def project(layer, value, selected, sorted_indices):
++            if fp16_prefill and isinstance(layer, QuantizedSwitchLinear):
++                cached = getattr(layer, "_flash_half_qparams", None)
++                if cached is None:
++                    scales = layer.scales.astype(mx.float16)
++                    biases = layer.get("biases")
++                    biases = biases.astype(mx.float16) if biases is not None else None
++                    mx.eval(scales)
++                    if biases is not None: mx.eval(biases)
++                    cached = (scales, biases)
++                    layer._flash_half_qparams = cached
++                result = mx.gather_qmm(value.astype(mx.float16), layer.weight, *cached,
++                    rhs_indices=selected, sorted_indices=sorted_indices, transpose=True,
++                    group_size=layer.group_size, bits=layer.bits, mode=layer.mode).astype(value.dtype)
++                if "bias" in layer: result = result + mx.expand_dims(layer.bias[selected], -2)
++                return result
++            if not dense_prefill:
++                return layer(value, selected, sorted_indices=sorted_indices)
++            qw, scales, biases = layer.weight, layer.scales, layer.get("biases")
++            if dense_used is not None:
++                qw, scales = mx.take(qw, dense_used, axis=0), mx.take(scales, dense_used, axis=0)
++                if biases is not None: biases = mx.take(biases, dense_used, axis=0)
++                selected = mx.take(dense_remap, selected)
++            weight = mx.dequantize(qw, scales, biases,
++                                   group_size=layer.group_size, bits=layer.bits, mode=layer.mode)
++            result = mx.gather_mm(value, weight.swapaxes(-1, -2),
++                                  rhs_indices=selected, sorted_indices=sorted_indices)
++            if "bias" in layer:
++                bias = layer.bias if dense_used is None else mx.take(layer.bias, dense_used, axis=0)
++                result = result + mx.expand_dims(bias[selected], -2)
++            # Bound temporary dense storage to this one projection.
++            mx.eval(result)
++            return result
+         x = mx.expand_dims(x, (-2, -3))
+         do_sort = indices.size >= 64
+         idx = indices
+@@ -129,12 +179,10 @@
+             x, idx, inv_order = _gather_sort(x, indices)
+         if self.training:
+             idx = mx.stop_gradient(idx)
+-        x_gate_up = gate_up(x, idx, sorted_indices=do_sort)
++        x_gate_up = project(gate_up, x, idx, sorted_indices=do_sort)
+         x_gate, x_up = mx.split(x_gate_up, 2, axis=-1)
+-        x = self.down_proj(
+-            self.activation(x_up, x_gate),
+-            idx,
+-            sorted_indices=do_sort,
++        x = project(
++            self.down_proj, self.activation(x_up, x_gate), idx, sorted_indices=do_sort,
+         )
+         if do_sort:
+             x = _scatter_unsort(x, inv_order, indices.shape)
+@@ -221,6 +269,11 @@
+         # the transient to a single layer's worth.
+         _sync_and_clear_cache()
+     logger.info("MoE gate+up fusion applied: %d layers", len(targets))
++    if os.environ.get("FLASH_ANE_GDN", "0") == "1":
++        import sys
++        sys.path.insert(0, str(__import__("pathlib").Path(os.environ["FLASH_RECIPE_ROOT"])/"runtime"))
++        from flash_ane import enable
++        enable(model)
+     return len(targets)
+ 
+ 
+--- a/omlx/patches/qwen35_moe_weighted_sum.py
++++ b/omlx/patches/qwen35_moe_weighted_sum.py
+@@ -24,6 +24,12 @@
+ 
+ 
+ def _native_weighted_sum():
++    if os.environ.get("FLASH_WEIGHTED10", "0") == "1":
++        if os.environ.get("FLASH_WEIGHTED10_EXACT", "0") == "1":
++            from flash_weighted10_exactfast import weighted_sum
++        else:
++            from flash_weighted10 import weighted_sum
++        return weighted_sum
+     try:
+         from omlx.custom_kernels.qwen35_prefill import fast
+     except Exception:
+@@ -55,7 +61,8 @@
+         return False
+     if getattr(self, "sharding_group", None) is not None:
+         return False
+-    if getattr(self, "top_k", None) not in (6, 8):
++    allowed_k = (10,) if os.environ.get("FLASH_WEIGHTED10", "0") == "1" else (6, 8)
++    if getattr(self, "top_k", None) not in allowed_k:
+         return False
+     if x.shape[-2] * int(getattr(self, "top_k", 0)) < 64:
+         return False
+@@ -138,6 +145,12 @@
+         if x.ndim != 3 or x.shape[-2] < min_tokens:
+             return orig_call(self, x, *args, **kwargs)
+         target_verify = _target_verify_arg(args, kwargs)
++        if os.environ.get("FLASH_COMPILE_MOE", "0") == "1" and not target_verify:
++            compiled = getattr(self, "_flash_moe_forward", None)
++            if compiled is None:
++                compiled = mx.compile(lambda value: orig_call(self, value, target_verify=False))
++                self._flash_moe_forward = compiled
++            return compiled(x)
+         if not _should_route(self, x, target_verify, min_tokens):
+             return orig_call(self, x, *args, **kwargs)
+         try:
+--- a/omlx/patches/mlx_vlm_qwen4_exp_compat/vendor/mlx_vlm/models/qwen4_exp/language.py
++++ b/omlx/patches/mlx_vlm_qwen4_exp_compat/vendor/mlx_vlm/models/qwen4_exp/language.py
+@@ -823,6 +823,10 @@
+         self.weight = mx.zeros(dim)
+ 
+     def __call__(self, x: mx.array) -> mx.array:
++        if (os.environ.get("FLASH_HC_NORM", "0") == "1" and self.group_size == 2560
++                and x.ndim == 3 and x.shape[1] >= 2048 and x.shape[-1] == 10240):
++            from flash_hcnorm import norm
++            return norm(x, self.weight, self.eps, int(os.environ.get("FLASH_HC_NORM_THREADS", "256")))
+         dtype = x.dtype
+         y = x.astype(mx.float32)
+         if self.group_size is not None:
+@@ -830,7 +834,11 @@
+             weight = self.weight.reshape(-1, self.group_size)
+         else:
+             weight = self.weight
+-        y = y * mx.rsqrt(mx.mean(mx.square(y), axis=-1, keepdims=True) + self.eps)
++        if (os.environ.get("FLASH_FAST_NORM", "0") == "1"
++                and x.ndim == 3 and x.shape[1] >= 2048 and self.group_size is not None):
++            y = mx.fast.rms_norm(y, None, self.eps)
++        else:
++            y = y * mx.rsqrt(mx.mean(mx.square(y), axis=-1, keepdims=True) + self.eps)
+         y = y * (1.0 + weight.astype(mx.float32))
+         return y.reshape(x.shape).astype(dtype)
+ 
+@@ -1049,6 +1057,16 @@
+     ) -> bool:
+         """Fail closed outside the proven contiguous batch-one text shape."""
+ 
++        if x.shape[1] > 1 and not getattr(type(self), "_flash_cache_logged", False):
++            print("FLASH_QSA_PREFILL_PATH", type(cache).__name__, type(getattr(cache, "offset", None)).__name__,
++                  "shape", x.shape, "target_verify", target_verify, "mask", type(mask).__name__, flush=True)
++            type(self)._flash_cache_logged = True
++        if os.environ.get("FLASH_QSA_DENSE_MASK", "0") == "1":
++            return False
++        if (os.environ.get("FLASH_QSA_DENSE_SHORT", "0") == "1"
++                and not target_verify and 2048 <= x.shape[1] <= 4096
++                and getattr(cache, "offset", None) == 0):
++            return False
+         causal_mask = mask is None or (isinstance(mask, str) and mask == "causal")
+         if not (
+             x.ndim == 3
+@@ -1378,6 +1396,13 @@
+             )
+ 
+     def __call__(self, hyper_input: mx.array, target_verify: bool = False):
++        if (os.environ.get("FLASH_COMPILE_HC", "0") == "1" and not target_verify
++                and hyper_input.ndim == 3 and hyper_input.shape[1] >= 1024):
++            compiled = getattr(self, "_flash_prefill_forward", None)
++            if compiled is None:
++                compiled = mx.compile(self._forward)
++                self._flash_prefill_forward = compiled
++            return compiled(hyper_input)
+         compiled_forward = getattr(self, "_compiled_forward", None)
+         if (
+             compiled_forward is not None
+@@ -1408,6 +1433,11 @@
+                 self.block_inject_weight,
+             )
+         input_inject_weight = getattr(self, "input_inject_weight", None)
++        if (os.environ.get("FLASH_HC_FUSE", "0") == "1" and not target_verify
++                and hyper_input.ndim == 3 and hyper_input.shape[1] >= 1024
++                and "block_inject_weight" in self):
++            from flash_hcfuse import fused
++            input_inject_weight = fused(self)
+         if hybrid is not None:
+             mix = hybrid[..., : self.hc_lowrank]
+             block_injection = hybrid[
+@@ -1445,16 +1475,17 @@
+             block_injection = mx.take(combined, indices[1], axis=-1)
+ 
+         mix = nn.silu(mix / self.hc_count)
+-        mix = mx.sigmoid(
+-            _target_verify_linear(
+-                self.input_mix_weight_up,
+-                mix,
+-                target_verify,
+-            )
+-        )
+-        mix = mix.reshape(*mix.shape[:-1], self.hc_count, self.hidden_size)
+-        streams = normed.reshape(*normed.shape[:-1], self.hc_count, self.hidden_size)
+-        mixed_input = mx.mean(mix * streams, axis=-2)
++        projected_mix = _target_verify_linear(self.input_mix_weight_up, mix, target_verify)
++        if (os.environ.get("FLASH_HC_MIX", "0") == "1" and not target_verify
++                and self.hc_count == 4 and self.hidden_size == 2560
++                and hyper_input.ndim == 3 and hyper_input.shape[1] >= 2048):
++            from flash_hcmix import mix_mean
++            mixed_input = mix_mean(projected_mix, normed)
++        else:
++            mix = mx.sigmoid(projected_mix)
++            mix = mix.reshape(*mix.shape[:-1], self.hc_count, self.hidden_size)
++            streams = normed.reshape(*normed.shape[:-1], self.hc_count, self.hidden_size)
++            mixed_input = mx.mean(mix * streams, axis=-2)
+         if block_injection is None:
+             return mixed_input
+         injection_weights = 2 * mx.sigmoid(
+@@ -1837,7 +1868,46 @@
+                 group_size,
+             )
+ 
++    def _fast_dense_bf16(self, indices: mx.array) -> mx.array:
++        # Keep the exact checkpoint BF16 bits until the single upload.
++        shape = indices.shape
++        flat = indices.reshape(-1)
++        mx.eval(flat)
++        host = np.asarray(flat, dtype=np.int64)
++        if np.any(host < 0) or np.any(host >= self.shard_offsets[-1]):
++            raise IndexError("embedding index is outside the sharded vocabulary")
++        shard_ids = np.searchsorted(self.shard_offsets, host, side="right") - 1
++        order = np.argsort(shard_ids, kind="stable")
++        sorted_shards = shard_ids[order]
++        boundaries = np.r_[0, np.flatnonzero(np.diff(sorted_shards)) + 1, host.size]
++        output = np.empty((host.size, self.dims), dtype=np.uint16)
++        touched = []
++        for start, end in zip(boundaries[:-1], boundaries[1:]):
++            if start == end:
++                continue
++            shard = int(sorted_shards[start])
++            positions = order[start:end]
++            local = host[positions] - self.shard_offsets[shard]
++            key = self._shard_specs[shard][0]
++            reader = self._tensor_readers[key]
++            entry = reader._header[key]
++            view = np.ndarray(tuple(entry["shape"]), dtype=np.dtype("<u2"),
++                              buffer=reader._mapping,
++                              offset=reader._data_start + entry["data_offsets"][0])
++            output[positions] = view[local]
++            touched.append(shard)
++        self.rows_read = int(host.size)
++        self.last_touched_shards = tuple(touched)
++        fp32 = (output.astype(np.uint32) << np.uint32(16)).view(np.float32)
++        values = mx.array(fp32).astype(mx.bfloat16) * self.weight_scale
++        return values.reshape(*shape, self.dims)
++
+     def __call__(self, indices: mx.array) -> mx.array:
++        if os.environ.get("FLASH_PLE_FAST", "0") == "1" and all(
++            spec[3] is None and self._tensor_readers[spec[0]].tensor_dtype(spec[0]) == "BF16"
++            for spec in self._shard_specs.values()
++        ):
++            return self._fast_dense_bf16(indices)
+         shape = indices.shape
+         flat = indices.reshape(-1)
+         mx.eval(flat)
+@@ -2326,14 +2396,23 @@
+                 position_ids=position_ids,
+                 target_verify=target_verify,
+             )
+-        injection = branch[..., None, :] * injection_weights[..., None]
+-        hidden_states = hyper_input + injection.reshape(*hyper_input.shape)
++        if (not target_verify and hyper_input.shape[1] >= 2048
++                and os.environ.get("FLASH_HC_INJECT", "0") == "1"):
++            from flash_hcinject import inject
++            hidden_states = inject(hyper_input, branch, injection_weights)
++        else:
++            injection = branch[..., None, :] * injection_weights[..., None]
++            hidden_states = hyper_input + injection.reshape(*hyper_input.shape)
+ 
+         mixed, hyper_input, injection_weights = self.mlp_hyper_connection(
+             hidden_states,
+             target_verify=target_verify,
+         )
+         branch = self.mlp(mixed, target_verify=target_verify)
++        if (not target_verify and hyper_input.shape[1] >= 2048
++                and os.environ.get("FLASH_HC_INJECT", "0") == "1"):
++            from flash_hcinject import inject
++            return inject(hyper_input, branch, injection_weights)
+         injection = branch[..., None, :] * injection_weights[..., None]
+         return hyper_input + injection.reshape(*hyper_input.shape)
+ 
+@@ -2688,3 +2767,94 @@
+             return result
+         finally:
+             self._discard_ple_snapshots(caches)
++
++
++# Diagnostic-only synchronous profiling; excluded from all performance gates.
++if os.environ.get("FLASH_PROFILE", "0") == "1":
++    import time as _profile_time
++    from mlx.utils import tree_flatten as _profile_flatten
++    def _profile_wrap(cls):
++        original = cls.__call__
++        calls = [0]
++        def measured(self, x, *args, **kwargs):
++            if x.ndim != 3 or x.shape[1] < 1024 or calls[0] >= 100:
++                return original(self, x, *args, **kwargs)
++            mx.eval(x)
++            start = _profile_time.perf_counter()
++            result = original(self, x, *args, **kwargs)
++            arrays = [v for _, v in _profile_flatten(result) if isinstance(v, mx.array)]
++            mx.eval(*arrays)
++            elapsed = _profile_time.perf_counter() - start
++            calls[0] += 1
++            print("FLASH_PROFILE", cls.__name__, x.shape[1], elapsed, flush=True)
++            return result
++        cls.__call__ = measured
++    for _profile_cls in (Qwen4ExpGatedResidual, Qwen4ExpGatedDeltaNet,
++                         Qwen4ExpAttention, Qwen3_5MoeSparseMoeBlock, Qwen4ExpPLELayer, Qwen4ExpDecoderLayer):
++        _profile_wrap(_profile_cls)
++
++
++# Prefill-only cached expansion of existing quantized linear values.
++# Checkpoint tensors and decode/target-verification kernels remain unchanged.
++if os.environ.get("FLASH_DENSE_LINEAR", "0") == "1":
++    _flash_dense_cache = {}
++    _flash_dense_bytes = [0]
++    _flash_original_ql = nn.QuantizedLinear.__call__
++    def _flash_dense_linear(self, x):
++        if x.ndim != 3 or x.shape[1] < 1024:
++            return _flash_original_ql(self, x)
++        key = id(self.weight)
++        weight = _flash_dense_cache.get(key)
++        if weight is None:
++            weight = mx.dequantize(self.weight, self.scales, self.get("biases"),
++                                   group_size=self.group_size, bits=self.bits, mode=self.mode)
++            mx.eval(weight)
++            if _flash_dense_bytes[0] + weight.nbytes <= 16 * 1024**3:
++                _flash_dense_cache[key] = weight
++                _flash_dense_bytes[0] += weight.nbytes
++        result = x @ weight.T
++        if "bias" in self:
++            result = result + self.bias
++        return result
++    nn.QuantizedLinear.__call__ = _flash_dense_linear
++
++if os.environ.get("FLASH_PROFILE_DETAIL", "0") == "1":
++    import time as _detail_time
++    def _detail_wrap(cls):
++        old = cls.__call__
++        count = [0]
++        def call(self, x, *args, **kwargs):
++            if x.ndim != 3 or x.shape[1] < 1024 or count[0] >= 70:
++                return old(self, x, *args, **kwargs)
++            mx.eval(x)
++            t = _detail_time.perf_counter()
++            y = old(self, x, *args, **kwargs)
++            mx.eval(y)
++            print("FLASH_DETAIL", cls.__name__, x.shape, y.shape, _detail_time.perf_counter()-t, flush=True)
++            count[0] += 1
++            return y
++        cls.__call__ = call
++    _detail_wrap(nn.Conv1d)
++    _detail_wrap(nn.QuantizedLinear)
++
++
++# Experimental prefill arithmetic dtype; six-bit packed weights stay unchanged.
++if os.environ.get("FLASH_PREFILL_FP16", "0") == "1":
++    _flash_original_fp16_ql = nn.QuantizedLinear.__call__
++    def _flash_fp16_linear(self, x):
++        if x.ndim != 3 or x.shape[1] < 1024 or x.dtype != mx.bfloat16:
++            return _flash_original_fp16_ql(self, x)
++        cached = getattr(self, "_flash_half_qparams", None)
++        if cached is None:
++            scales = self.scales.astype(mx.float16)
++            biases = self.get("biases")
++            biases = biases.astype(mx.float16) if biases is not None else None
++            mx.eval(scales)
++            if biases is not None: mx.eval(biases)
++            cached = (scales, biases)
++            self._flash_half_qparams = cached
++        result = mx.quantized_matmul(x.astype(mx.float16), self.weight, *cached,
++                    transpose=True, group_size=self.group_size, bits=self.bits, mode=self.mode).astype(x.dtype)
++        if "bias" in self: result = result + self.bias
++        return result
++    nn.QuantizedLinear.__call__ = _flash_fp16_linear
+--- a/omlx/custom_kernels/qwen35_prefill/gdn.py
++++ b/omlx/custom_kernels/qwen35_prefill/gdn.py
+@@ -587,6 +587,12 @@
+         state = mx.zeros((B, Hv, Dv, Dk), dtype=mx.float32)
+     g = g.astype(mx.float32)
+     beta = beta.astype(mx.float32)
++    if block_t is None and os.environ.get("FLASH_GDN_TUNED", "0") == "1":
++        import json, pathlib
++        global _flash_block_table
++        if "_flash_block_table" not in globals():
++            _flash_block_table=json.loads((pathlib.Path(os.environ["FLASH_RECIPE_ROOT"])/"runtime/gdn-block-table.json").read_text())
++        block_t=int(_flash_block_table.get("3256" if T<4096 else "8192",32))
+     ks = _get_kernel_s(block_t, in_dtype)
+     y, state_out = ks(
+         inputs=[q, k, v, g, beta, state, T],

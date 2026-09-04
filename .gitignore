@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+*.safetensors
+*.so
+*.dylib
+*.metallib
+*.log
+installation.json
+model-receipt.json
+numerical-checks.json

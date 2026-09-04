@@ -1,0 +1,30 @@
+{
+  "omlx/scheduler.py": {
+    "before": "a369b6075149e7609b8528062a31d841d86f52796fba5f7adac59230d75e5ef1",
+    "after": "f8d8e61fc5b6246ec629c8d3175a8405e796713e91214cb5838545e326b8fa57"
+  },
+  "omlx/patches/qwen35_q4_mlp.py": {
+    "before": "453bbd0941ddb82cc2446d9271105804c8c03d0ad23271e433cab7b541da679f",
+    "after": "27577ab905ff1537474f3fd2b7e875d8ec324d0a124d895db979f717ed729c61"
+  },
+  "omlx/patches/qwen35_gdn_chunked.py": {
+    "before": "bee343373794f4bbb0b8ff650f8fe308a3f0f1603db9b9830694f25b3f0847e1",
+    "after": "d2e2dc6a23572d9a1b1165731631c9fb337709dc134f617286f51c386da49bbd"
+  },
+  "omlx/patches/qwen35_moe_gate_up.py": {
+    "before": "269c5fbd904b1fffc8a449a361a839f90e14d057f64625d841e7633ecafe0eac",
+    "after": "83c2965d715c8f6d0eeb5f94a62fe352c3daabc5f24cf9a809627dc6ab5c0ca3"
+  },
+  "omlx/patches/qwen35_moe_weighted_sum.py": {
+    "before": "70d34493c42f8eabf8c5c4e0fc02843527c2f5b2e5e57884dacfc345e78ae623",
+    "after": "baba8135806b876d6d5d548a7238f7d6f793d78aad24c170016af5b81019ddf8"
+  },
+  "omlx/patches/mlx_vlm_qwen4_exp_compat/vendor/mlx_vlm/models/qwen4_exp/language.py": {
+    "before": "ecf39865de65d64fd9fae4ce1661c1f58ff2cff289b0167ca18e739656ed55e5",
+    "after": "11b89d0c355750bd7fe5e6f8335647a5c65404cf4d5a4832457a8418a001a618"
+  },
+  "omlx/custom_kernels/qwen35_prefill/gdn.py": {
+    "before": "ad76165019bc89d8cd983039dbb86bd87cb55151b25532e79426f0023bede75f",
+    "after": "a0b9405ca17116e398da2ed906bfc0a29ce7b24f32b12dd29edeeb0bf43a1f64"
+  }
+}

@@ -1,0 +1,821 @@
+{
+  "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+  "tokens": 256,
+  "status": "complete",
+  "cells": {
+    "256": {
+      "rows": [
+        {
+          "ttft_s": 1.1153477500000006,
+          "total_s": 4.76189,
+          "prompt_tokens": 568,
+          "completion_tokens": 256,
+          "prefill_tps": 509.2582111722552,
+          "decode_tps": 69.92925969800571,
+          "chunks": 34,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 568,
+            "completion_tokens": 256,
+            "total_tokens": 824,
+            "input_tokens": 568,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 1.11,
+            "total_time": 4.76,
+            "prompt_eval_duration": 1.11,
+            "generation_duration": 3.65,
+            "prompt_tokens_per_second": 511.63,
+            "generation_tokens_per_second": 70.2
+          }
+        },
+        {
+          "ttft_s": 1.0915459170000013,
+          "total_s": 4.7363430420000014,
+          "prompt_tokens": 571,
+          "completion_tokens": 256,
+          "prefill_tps": 523.111296654687,
+          "decode_tps": 69.96274175342475,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 571,
+            "completion_tokens": 256,
+            "total_tokens": 827,
+            "input_tokens": 571,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 1.09,
+            "total_time": 4.73,
+            "prompt_eval_duration": 1.09,
+            "generation_duration": 3.65,
+            "prompt_tokens_per_second": 525.57,
+            "generation_tokens_per_second": 70.23
+          }
+        },
+        {
+          "ttft_s": 1.1048080000000002,
+          "total_s": 4.699248375,
+          "prompt_tokens": 568,
+          "completion_tokens": 256,
+          "prefill_tps": 514.1164799675598,
+          "decode_tps": 70.94289330087999,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 568,
+            "completion_tokens": 256,
+            "total_tokens": 824,
+            "input_tokens": 568,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 1.1,
+            "total_time": 4.69,
+            "prompt_eval_duration": 1.1,
+            "generation_duration": 3.59,
+            "prompt_tokens_per_second": 516.44,
+            "generation_tokens_per_second": 71.22
+          }
+        },
+        {
+          "ttft_s": 1.0975375420000013,
+          "total_s": 4.885680459,
+          "prompt_tokens": 567,
+          "completion_tokens": 256,
+          "prefill_tps": 516.611029966936,
+          "decode_tps": 67.31530609778208,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 567,
+            "completion_tokens": 256,
+            "total_tokens": 823,
+            "input_tokens": 567,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 1.09,
+            "total_time": 4.88,
+            "prompt_eval_duration": 1.09,
+            "generation_duration": 3.79,
+            "prompt_tokens_per_second": 519.07,
+            "generation_tokens_per_second": 67.57
+          }
+        },
+        {
+          "ttft_s": 1.0971372089999996,
+          "total_s": 4.696650375000001,
+          "prompt_tokens": 572,
+          "completion_tokens": 256,
+          "prefill_tps": 521.3568506361726,
+          "decode_tps": 70.84291353860266,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 572,
+            "completion_tokens": 256,
+            "total_tokens": 828,
+            "input_tokens": 572,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 1.09,
+            "total_time": 4.69,
+            "prompt_eval_duration": 1.09,
+            "generation_duration": 3.6,
+            "prompt_tokens_per_second": 523.79,
+            "generation_tokens_per_second": 71.11
+          }
+        }
+      ],
+      "warmup": {
+        "ttft_s": 1.1071035,
+        "total_s": 4.723707958,
+        "prompt_tokens": 571,
+        "completion_tokens": 256,
+        "prefill_tps": 515.7602699295956,
+        "decode_tps": 70.50812522114079,
+        "chunks": 33,
+        "finish": "length",
+        "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+        "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+        "usage": {
+          "prompt_tokens": 571,
+          "completion_tokens": 256,
+          "total_tokens": 827,
+          "input_tokens": 571,
+          "output_tokens": 256,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "time_to_first_token": 1.1,
+          "total_time": 4.71,
+          "prompt_eval_duration": 1.1,
+          "generation_duration": 3.62,
+          "prompt_tokens_per_second": 520.86,
+          "generation_tokens_per_second": 70.78
+        }
+      },
+      "medians": {
+        "prefill_tps": 516.611029966936,
+        "decode_tps": 69.96274175342475,
+        "ttft_s": 1.0975375420000013,
+        "prompt_tokens": 568
+      }
+    },
+    "2048": {
+      "rows": [
+        {
+          "ttft_s": 3.465528167000002,
+          "total_s": 7.566368417,
+          "prompt_tokens": 3255,
+          "completion_tokens": 256,
+          "prefill_tps": 939.2507701986881,
+          "decode_tps": 62.18237835526516,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3255,
+            "completion_tokens": 256,
+            "total_tokens": 3511,
+            "input_tokens": 3255,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.46,
+            "total_time": 7.56,
+            "prompt_eval_duration": 3.46,
+            "generation_duration": 4.1,
+            "prompt_tokens_per_second": 941.69,
+            "generation_tokens_per_second": 62.42
+          }
+        },
+        {
+          "ttft_s": 3.4726497079999987,
+          "total_s": 7.4973336669999995,
+          "prompt_tokens": 3256,
+          "completion_tokens": 256,
+          "prefill_tps": 937.6125649814609,
+          "decode_tps": 63.35901218523478,
+          "chunks": 34,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3256,
+            "completion_tokens": 256,
+            "total_tokens": 3512,
+            "input_tokens": 3256,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.46,
+            "total_time": 7.49,
+            "prompt_eval_duration": 3.46,
+            "generation_duration": 4.03,
+            "prompt_tokens_per_second": 940.09,
+            "generation_tokens_per_second": 63.6
+          }
+        },
+        {
+          "ttft_s": 3.4695881250000014,
+          "total_s": 7.584563834000001,
+          "prompt_tokens": 3254,
+          "completion_tokens": 256,
+          "prefill_tps": 937.8634819947105,
+          "decode_tps": 61.96877406646194,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3254,
+            "completion_tokens": 256,
+            "total_tokens": 3510,
+            "input_tokens": 3254,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.46,
+            "total_time": 7.58,
+            "prompt_eval_duration": 3.46,
+            "generation_duration": 4.12,
+            "prompt_tokens_per_second": 940.29,
+            "generation_tokens_per_second": 62.2
+          }
+        },
+        {
+          "ttft_s": 3.4515860420000024,
+          "total_s": 7.646819166999997,
+          "prompt_tokens": 3257,
+          "completion_tokens": 256,
+          "prefill_tps": 943.6241659248192,
+          "decode_tps": 60.78327292002405,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3257,
+            "completion_tokens": 256,
+            "total_tokens": 3513,
+            "input_tokens": 3257,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.44,
+            "total_time": 7.64,
+            "prompt_eval_duration": 3.44,
+            "generation_duration": 4.2,
+            "prompt_tokens_per_second": 946.09,
+            "generation_tokens_per_second": 61.02
+          }
+        },
+        {
+          "ttft_s": 3.441108041999996,
+          "total_s": 7.480011000000005,
+          "prompt_tokens": 3257,
+          "completion_tokens": 256,
+          "prefill_tps": 946.4974537989248,
+          "decode_tps": 63.135956137522896,
+          "chunks": 34,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3257,
+            "completion_tokens": 256,
+            "total_tokens": 3513,
+            "input_tokens": 3257,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.43,
+            "total_time": 7.47,
+            "prompt_eval_duration": 3.43,
+            "generation_duration": 4.04,
+            "prompt_tokens_per_second": 948.92,
+            "generation_tokens_per_second": 63.38
+          }
+        }
+      ],
+      "warmup": {
+        "ttft_s": 3.553746167,
+        "total_s": 7.564609458999996,
+        "prompt_tokens": 3255,
+        "completion_tokens": 256,
+        "prefill_tps": 915.9348605777899,
+        "decode_tps": 63.577335210755976,
+        "chunks": 34,
+        "finish": "length",
+        "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+        "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+        "usage": {
+          "prompt_tokens": 3255,
+          "completion_tokens": 256,
+          "total_tokens": 3511,
+          "input_tokens": 3255,
+          "output_tokens": 256,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "time_to_first_token": 3.54,
+          "total_time": 7.56,
+          "prompt_eval_duration": 3.54,
+          "generation_duration": 4.01,
+          "prompt_tokens_per_second": 918.2,
+          "generation_tokens_per_second": 63.82
+        }
+      },
+      "medians": {
+        "prefill_tps": 939.2507701986881,
+        "decode_tps": 62.18237835526516,
+        "ttft_s": 3.465528167000002,
+        "prompt_tokens": 3256
+      }
+    },
+    "8192": {
+      "rows": [
+        {
+          "ttft_s": 12.389250875000002,
+          "total_s": 16.579608666,
+          "prompt_tokens": 12481,
+          "completion_tokens": 256,
+          "prefill_tps": 1007.40554258895,
+          "decode_tps": 60.853992121552515,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12481,
+            "completion_tokens": 256,
+            "total_tokens": 12737,
+            "input_tokens": 12481,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.37,
+            "total_time": 16.56,
+            "prompt_eval_duration": 12.37,
+            "generation_duration": 4.19,
+            "prompt_tokens_per_second": 1009.21,
+            "generation_tokens_per_second": 61.09
+          }
+        },
+        {
+          "ttft_s": 12.39537399999999,
+          "total_s": 16.554545207999993,
+          "prompt_tokens": 12481,
+          "completion_tokens": 256,
+          "prefill_tps": 1006.9078996728949,
+          "decode_tps": 61.31029170174997,
+          "chunks": 34,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12481,
+            "completion_tokens": 256,
+            "total_tokens": 12737,
+            "input_tokens": 12481,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.37,
+            "total_time": 16.53,
+            "prompt_eval_duration": 12.37,
+            "generation_duration": 4.16,
+            "prompt_tokens_per_second": 1008.67,
+            "generation_tokens_per_second": 61.54
+          }
+        },
+        {
+          "ttft_s": 12.419815916999994,
+          "total_s": 16.63021254200001,
+          "prompt_tokens": 12481,
+          "completion_tokens": 256,
+          "prefill_tps": 1004.9263276854416,
+          "decode_tps": 60.564365477088295,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12481,
+            "completion_tokens": 256,
+            "total_tokens": 12737,
+            "input_tokens": 12481,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.4,
+            "total_time": 16.61,
+            "prompt_eval_duration": 12.4,
+            "generation_duration": 4.21,
+            "prompt_tokens_per_second": 1006.7,
+            "generation_tokens_per_second": 60.79
+          }
+        },
+        {
+          "ttft_s": 12.460446832999992,
+          "total_s": 16.697478665999995,
+          "prompt_tokens": 12475,
+          "completion_tokens": 256,
+          "prefill_tps": 1001.167949046696,
+          "decode_tps": 60.183640352649626,
+          "chunks": 35,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12475,
+            "completion_tokens": 256,
+            "total_tokens": 12731,
+            "input_tokens": 12475,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.44,
+            "total_time": 16.68,
+            "prompt_eval_duration": 12.44,
+            "generation_duration": 4.24,
+            "prompt_tokens_per_second": 1002.98,
+            "generation_tokens_per_second": 60.41
+          }
+        },
+        {
+          "ttft_s": 12.378243749999996,
+          "total_s": 16.547132583999996,
+          "prompt_tokens": 12481,
+          "completion_tokens": 256,
+          "prefill_tps": 1008.3013593911498,
+          "decode_tps": 61.167378204069415,
+          "chunks": 34,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12481,
+            "completion_tokens": 256,
+            "total_tokens": 12737,
+            "input_tokens": 12481,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.36,
+            "total_time": 16.52,
+            "prompt_eval_duration": 12.36,
+            "generation_duration": 4.17,
+            "prompt_tokens_per_second": 1010.17,
+            "generation_tokens_per_second": 61.4
+          }
+        }
+      ],
+      "warmup": {
+        "ttft_s": 12.507764999999992,
+        "total_s": 16.746768875,
+        "prompt_tokens": 12483,
+        "completion_tokens": 256,
+        "prefill_tps": 998.0200299573911,
+        "decode_tps": 60.15564210825343,
+        "chunks": 35,
+        "finish": "length",
+        "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+        "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+        "usage": {
+          "prompt_tokens": 12483,
+          "completion_tokens": 256,
+          "total_tokens": 12739,
+          "input_tokens": 12483,
+          "output_tokens": 256,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "time_to_first_token": 12.49,
+          "total_time": 16.73,
+          "prompt_eval_duration": 12.49,
+          "generation_duration": 4.24,
+          "prompt_tokens_per_second": 999.75,
+          "generation_tokens_per_second": 60.39
+        }
+      },
+      "medians": {
+        "prefill_tps": 1006.9078996728949,
+        "decode_tps": 60.853992121552515,
+        "ttft_s": 12.39537399999999,
+        "prompt_tokens": 12481
+      }
+    }
+  },
+  "cases": {
+    "code": {
+      "rows": [
+        {
+          "ttft_s": 0.6146088340000002,
+          "total_s": 4.6967855,
+          "prompt_tokens": 74,
+          "completion_tokens": 256,
+          "prefill_tps": 120.4017838767348,
+          "decode_tps": 62.466674243637456,
+          "chunks": 37,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple_csv(self):\n        csv_data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_quoted_fields(self):\n        csv_data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_escaped_double_quotes(self):\n        csv_data = '\"He said, \"\"Hello\"\"\",b,c'\n        expected = [['He said, \"Hello\"', 'b', 'c']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_comma",
+          "usage": {
+            "prompt_tokens": 74,
+            "completion_tokens": 256,
+            "total_tokens": 330,
+            "input_tokens": 74,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.61,
+            "total_time": 4.69,
+            "prompt_eval_duration": 0.61,
+            "generation_duration": 4.08,
+            "prompt_tokens_per_second": 121.31,
+            "generation_tokens_per_second": 62.7
+          }
+        },
+        {
+          "ttft_s": 0.614818957999999,
+          "total_s": 4.737429499999999,
+          "prompt_tokens": 79,
+          "completion_tokens": 256,
+          "prefill_tps": 128.49310999938317,
+          "decode_tps": 61.85401153034746,
+          "chunks": 37,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple_csv(self):\n        csv_data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_quoted_fields(self):\n        csv_data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_escaped_quotes(self):\n        csv_data = '\"He said, \"\"Hello\"\"\",b,c'\n        expected = [['He said, \"Hello\"', 'b', 'c']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_comma_in",
+          "usage": {
+            "prompt_tokens": 79,
+            "completion_tokens": 256,
+            "total_tokens": 335,
+            "input_tokens": 79,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.61,
+            "total_time": 4.73,
+            "prompt_eval_duration": 0.61,
+            "generation_duration": 4.12,
+            "prompt_tokens_per_second": 129.43,
+            "generation_tokens_per_second": 62.09
+          }
+        },
+        {
+          "ttft_s": 0.6138155830000009,
+          "total_s": 4.712728291000001,
+          "prompt_tokens": 78,
+          "completion_tokens": 256,
+          "prefill_tps": 127.07399772872805,
+          "decode_tps": 62.21162004799639,
+          "chunks": 37,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple(self):\n        data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(data), expected)\n\n    def test_quoted_fields(self):\n        data = '\"a\",\"b\",\"c\"'\n        expected = [['a', 'b', 'c']]\n        self.assertEqual(parse_csv(data), expected)\n\n    def test_escaped_quotes(self):\n        data = '\"a\"\"b\",c'\n        expected = [['a\"b', 'c']]\n        self.assertEqual(parse_csv(data), expected)\n\n    def test_comma_in_quotes(self):\n        data = '\"a,b\",c'\n        expected = [['a,b', 'c']]\n        self.assertEqual(parse_csv(data), expected",
+          "usage": {
+            "prompt_tokens": 78,
+            "completion_tokens": 256,
+            "total_tokens": 334,
+            "input_tokens": 78,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.61,
+            "total_time": 4.71,
+            "prompt_eval_duration": 0.61,
+            "generation_duration": 4.1,
+            "prompt_tokens_per_second": 127.99,
+            "generation_tokens_per_second": 62.45
+          }
+        }
+      ],
+      "median_decode_tps": 62.21162004799639
+    },
+    "prose": {
+      "rows": [
+        {
+          "ttft_s": 0.6261072500000004,
+          "total_s": 6.141374708000001,
+          "prompt_tokens": 83,
+          "completion_tokens": 256,
+          "prefill_tps": 132.56514758453915,
+          "decode_tps": 46.23529175001616,
+          "chunks": 42,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first grasp the inefficiency of a full table scan. Without an index, if you ask a database to find a specific record, such as a user with the email \"john.doe@example.com,\" the database engine must read every single row in the table from start to finish until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database to jump directly to the relevant data, much like the index at the back of a textbook allows you to find a topic without reading every page.\n\nThe most common type of index is the B-Tree (or its variant, the B+Tree). This structure organizes data in a balanced tree hierarchy. When performing a **lookup** for a specific value, the database starts at the root node of the tree and compares the search key with the values in the node. Based on the",
+          "usage": {
+            "prompt_tokens": 83,
+            "completion_tokens": 256,
+            "total_tokens": 339,
+            "input_tokens": 83,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.62,
+            "total_time": 6.14,
+            "prompt_eval_duration": 0.62,
+            "generation_duration": 5.52,
+            "prompt_tokens_per_second": 133.47,
+            "generation_tokens_per_second": 46.41
+          }
+        },
+        {
+          "ttft_s": 0.6225164999999997,
+          "total_s": 5.9180473330000005,
+          "prompt_tokens": 84,
+          "completion_tokens": 256,
+          "prefill_tps": 134.9361824144421,
+          "decode_tps": 48.153812722782035,
+          "chunks": 45,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first grasp the inefficiency of a full table scan. Without an index, if you ask a database to find a specific record, it must read every single row in the table from start to finish until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database engine to locate data much faster, typically reducing the time complexity to O(log n) or even O(1) depending on the index type.\n\nThe most common index structure is the B-Tree (or its variant, the B+Tree). Think of a B-Tree index like the index at the back of a textbook. Instead of reading every page to find a topic, you look up the topic in the index, which tells you exactly which page number to turn to. In a database, the index stores the values of the indexed column(s) in sorted",
+          "usage": {
+            "prompt_tokens": 84,
+            "completion_tokens": 256,
+            "total_tokens": 340,
+            "input_tokens": 84,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.62,
+            "total_time": 5.91,
+            "prompt_eval_duration": 0.62,
+            "generation_duration": 5.3,
+            "prompt_tokens_per_second": 135.86,
+            "generation_tokens_per_second": 48.34
+          }
+        },
+        {
+          "ttft_s": 0.6305609580000038,
+          "total_s": 5.901869208000001,
+          "prompt_tokens": 83,
+          "completion_tokens": 256,
+          "prefill_tps": 131.6288281838082,
+          "decode_tps": 48.37508791105133,
+          "chunks": 42,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first appreciate the inefficiency of a full table scan. Without an index, if you ask a database to find a specific record, such as a user with the email \"john.doe@example.com,\" the database engine must read every single row in the table from start to finish until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database to jump directly to the relevant data, much like the index at the back of a textbook allows you to find a topic without reading every page.\n\nThe most common type of index is the B-Tree (or its variant, the B+Tree). This structure organizes data in a balanced tree format, where each node contains keys and pointers to child nodes. When performing a **lookup** for a specific value, the database starts at the root node and compares the search key with the",
+          "usage": {
+            "prompt_tokens": 83,
+            "completion_tokens": 256,
+            "total_tokens": 339,
+            "input_tokens": 83,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.63,
+            "total_time": 5.9,
+            "prompt_eval_duration": 0.63,
+            "generation_duration": 5.27,
+            "prompt_tokens_per_second": 132.52,
+            "generation_tokens_per_second": 48.56
+          }
+        }
+      ],
+      "median_decode_tps": 48.153812722782035
+    },
+    "count": {
+      "rows": [
+        {
+          "ttft_s": 0.6020355830000028,
+          "total_s": 4.210649833000005,
+          "prompt_tokens": 77,
+          "completion_tokens": 256,
+          "prefill_tps": 127.89941686885248,
+          "decode_tps": 70.664244591951,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 77,
+            "completion_tokens": 256,
+            "total_tokens": 333,
+            "input_tokens": 77,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 4.21,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 3.61,
+            "prompt_tokens_per_second": 128.84,
+            "generation_tokens_per_second": 70.94
+          }
+        },
+        {
+          "ttft_s": 0.6039239589999994,
+          "total_s": 4.206803541999996,
+          "prompt_tokens": 72,
+          "completion_tokens": 256,
+          "prefill_tps": 119.22030733673886,
+          "decode_tps": 70.77672015551241,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 72,
+            "completion_tokens": 256,
+            "total_tokens": 328,
+            "input_tokens": 72,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 4.2,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 3.6,
+            "prompt_tokens_per_second": 120.09,
+            "generation_tokens_per_second": 71.05
+          }
+        },
+        {
+          "ttft_s": 0.6012805410000013,
+          "total_s": 4.2088635409999995,
+          "prompt_tokens": 74,
+          "completion_tokens": 256,
+          "prefill_tps": 123.07067159853398,
+          "decode_tps": 70.68444440502135,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 74,
+            "completion_tokens": 256,
+            "total_tokens": 330,
+            "input_tokens": 74,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 4.2,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 3.61,
+            "prompt_tokens_per_second": 123.95,
+            "generation_tokens_per_second": 70.96
+          }
+        }
+      ],
+      "median_decode_tps": 70.68444440502135
+    }
+  },
+  "quality": {
+    "passed": 15,
+    "total": 15,
+    "checks": [
+      "arithmetic",
+      "sorted JSON",
+      "structured extraction",
+      "long-context recall",
+      "forced tool arguments"
+    ]
+  }
+}
