@@ -26,3 +26,7 @@ Target provenance was checked against local download metadata and the Hugging Fa
 Deferred PLE lookup follows an existing idea in [mlx-serve PR350](https://github.com/ddalcu/mlx-serve/pull/350), David Dalcu. This implementation uses a separately written, read-only mmap row gather scheduled as an MLX CPU primitive; its scheduling pattern is adapted from Apple's MIT-licensed MLX extension example. The source retains those credits. Compiled verification HC has related prior work in [MTPLX PR391](https://github.com/youssofal/MTPLX/pull/391). Fixed MTP depth is a serving configuration choice. We claim the tested integration and measured profile, not invention of these techniques.
 
 The additional14.7–15.2% production generation result uses a working MTP baseline and five matched requests per workload against before/after controls. It adds no prefill improvement claim and no broad quality-equivalence claim. Stored target weights are unchanged; compiled HC can alter outputs.
+
+## Prefix cache update
+
+Prefix caching, paged SSD storage, and GDN state snapshots are existing [oMLX 0.6.4](https://github.com/jundot/omlx/tree/v0.6.4) features. This update contributes a measured configuration and portable before/on/after benchmark with cache-state correctness checks. It does not claim a novel cache algorithm or kernel. The 51% reduction applies to eligible follow-up first-token latency on this exact machine and model; it does not establish faster cold prefill or token generation.

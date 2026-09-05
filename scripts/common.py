@@ -22,7 +22,7 @@ def environment(path, data):
     res = Path(data['app'])/'Contents/Resources'
     env = os.environ.copy()
     for key in list(env):
-        if key.startswith(('FLASH_', 'OMLX_', 'MLX_MAX_', 'R2_')): env.pop(key)
+        if key.startswith(('FLASH_', 'OMLX_', 'MLX_MAX_', 'R2_', 'R3_')): env.pop(key)
     env.update(json.loads((REPO/'runtime/qualified-env.json').read_text()))
     env.update(FLASH_RECIPE_ROOT=str(REPO), FLASH_OMLX_SOURCE=str(path/'source'),
                FLASH_MLX_PATH=str(path/'mlx'), PYTHONHOME=str(res/'Python/cpython-3.11'),

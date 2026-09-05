@@ -42,6 +42,22 @@ The updated public package passed a fresh source download, both hash-checked pat
 
 Existing installations: preserve your old checkout and state for rollback. Clone this revision separately and build a **new state directory**; the integrity checks intentionally reject mixing an old build with changed recipe files. This update does not modify an existing installation or production service.
 
+## Optional prefix cache: 51% shorter follow-up wait
+
+The cache profile reuses prior prompt work with **oMLX's existing prefix cache**. On the same system and optimized MTP runtime, eligible follow-ups started 51.03–51.27% sooner and complete requests finished 40.88–41.10% sooner. Fresh requests stayed flat. This is **not another cold-prefill or raw-generation speedup**, and it is not a new cache algorithm or kernel.
+
+| Median first-token wait | Cache off, before | Cache on | Cache off, after |
+|---|---:|---:|---:|
+| Fresh prompt | 15.093s | 15.075s | 15.083s |
+| Exact repeat | 15.085s | 7.381s | 15.075s |
+| Changed suffix | 15.089s | 7.353s | 15.075s |
+
+Each arm measured five fresh / exact-repeat / changed-suffix sequences, with 256 generated tokens per request. Warm requests reused 8,192 tokens from roughly 15K-token prompts; full speed outputs matched across arms. The cache-on and cache-off suites each passed 21 semantic checks, covering recall, actual assistant continuations, divergent branches, forced tool arguments and tool-result continuation. These bounded checks do not establish broad quality equivalence, eviction correctness, or multiuser isolation.
+
+The profile uses an 8GB paged SSD cache under the runtime state directory, no hot cache, concurrency 1, and unchanged stored 6-bit target weights and FP32 snapshot precision. The measured `auto` snapshot policy resolves to SSD sidecars when caching is enabled. Small prompts do not necessarily benefit: our first roughly 5.2K-token probe was below the effective 8,192-token cache block and had no hit. The first uncached quality setup also failed strict JSON formatting; the prompt was made explicit before fresh off/on checks passed. That failed setup is not counted as a pass.
+
+See [cache reproduction](docs/cache.md), [raw speed evidence](results/cache/candidate.json), and [semantic evidence](results/cache/quality-on.json). These are qualified-runtime measurements; this public cache launcher has not had a separate full-model clean-install benchmark.
+
 ## What you need
 
 - Apple Silicon macOS. This profile was measured on the 60-core M3 Ultra with 256 GiB memory. Other machines are unqualified.
@@ -119,7 +135,7 @@ The recipe adds a separate MTP draft with 7 corrected residual-gamma tensors, a 
 
 Stored target tensors remain unchanged through a symlinked model view. Runtime arithmetic is not bit-identical overall: the ANE path uses approximate INT8 working copies and FP16 projection metadata. Grouped normalization changes FP32 reduction order slightly. All 15 basic correctness checks passed on the measured system, but that is not broad model-quality or agent qualification. The recipe uses experimental private ANE APIs through oMLX.
 
-The measured profile is single-request, cache-off, thinking-off, with a 160 GB memory ceiling and context cap of 393216. Long context up to that cap, concurrent traffic and cached-turn performance are not qualified here. Keep your existing service configuration for rollback. To roll back a local trial, stop this foreground server and restart your original server.
+The default profile is single-request, cache-off, thinking-off, with a 160 GB memory ceiling and context cap of 393216. The optional cache profile is qualified only for the eligible follow-ups described above. Long context up to that cap and concurrent traffic remain unqualified. Keep your existing service configuration for rollback. To roll back a local trial, stop this foreground server and restart your original server.
 
 Some dormant experiment branches remain in the patch to preserve the tested source. They are unsupported and disabled. `serve.py` clears inherited tuning variables and loads only the qualified profile. Do not enable extra flags and treat the result as the measured recipe.
 
