@@ -37,6 +37,12 @@ def main():
     subprocess.run(['patch','--batch','--forward','-p1','-i',str(REPO/'patches/qualified.patch')],cwd=source,check=True)
     for rel,h in hashes.items():
         if sha(source/rel)!=h['after']:raise RuntimeError(f'Patched hash mismatch: {rel}')
+    mtp_hashes=json.loads((REPO/'patches/mtp-hashes.json').read_text())
+    for rel,h in mtp_hashes.items():
+        if sha(source/rel)!=h['before']:raise RuntimeError(f'Unrecognized MTP base: {rel}')
+    subprocess.run(['patch','--batch','--forward','-p1','-i',str(REPO/'patches/mtp.patch')],cwd=source,check=True)
+    for rel,h in mtp_hashes.items():
+        if sha(source/rel)!=h['after']:raise RuntimeError(f'MTP patch mismatch: {rel}')
     subprocess.run(['uv','pip','install','--python',str(a.python),'--target',str(a.state/'mlx'),'mlx==0.32.2','mlx-metal==0.32.2'],check=True)
     subprocess.run(['uv','pip','install','--python',str(a.python),'--target',str(a.state/'builddeps'),'setuptools==84.0.0','wheel==0.48.0','setuptools-scm==10.2.0','nanobind==2.15.0','ninja==1.13.2'],check=True)
     builder=source/'recipe_build_native.py'
@@ -49,6 +55,11 @@ def main():
         d=source/'omlx/custom_kernels'/name
         for pattern in ['_ext*.so','*.dylib','*.metallib']:
             if not list(d.glob(pattern)):raise RuntimeError(f'Missing rebuilt {name}/{pattern}')
+    # Build deferred PLE against the same pinned MLX ABI, without model loading.
+    native=a.state/'native';native.mkdir()
+    subprocess.run(['cmake','-S',str(REPO/'native'),'-B',str(a.state/'native-build'),'-DCMAKE_BUILD_TYPE=Release','-DPython_EXECUTABLE='+str(a.python),'-DCMAKE_LIBRARY_OUTPUT_DIRECTORY='+str(native)],env=env,check=True)
+    subprocess.run(['cmake','--build',str(a.state/'native-build'),'--parallel','2'],env=env,check=True)
+    if not list(native.glob('_mtp_ple_native*.so')):raise RuntimeError('Deferred PLE extension missing')
     receipt={'state':str(a.state),'app':str(a.app),'python':str(runtime),'source_archive_sha256':SHA,'omlx':'0.6.4','mlx':'0.32.2','patched_hashes':hashes}
     receipt['runtime_snapshot']=runtime_snapshot(a.state,receipt)
     write_json(a.state/'installation.json',receipt)

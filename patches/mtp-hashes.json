@@ -1,0 +1,10 @@
+{
+  "omlx/patches/mlx_lm_mtp/batch_generator.py": {
+    "before": "86e551862ab688ee4e50e8931f495863e2fc876163b56753a1b7dc27780cb764",
+    "after": "2e5db93f2cddce66c9a5e81f6dfb7ee21b20a9e249d4c08acb65f1d52bbe41ea"
+  },
+  "omlx/patches/mlx_vlm_qwen4_exp_compat/vendor/mlx_vlm/models/qwen4_exp/language.py": {
+    "before": "11b89d0c355750bd7fe5e6f8335647a5c65404cf4d5a4832457a8418a001a618",
+    "after": "524f697be70db81973b23cc9d04ab55ffc5751885916a3b72ac93a1353b005ec"
+  }
+}

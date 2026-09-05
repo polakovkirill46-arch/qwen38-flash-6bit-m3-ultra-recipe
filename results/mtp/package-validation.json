@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-04",
+  "machine": "M3 Ultra, 60 GPU cores, 256 GiB",
+  "fresh_source_download_and_checked_patch_build": true,
+  "native_builds": [
+    "decode_fast",
+    "glm_moe_dsa",
+    "qwen35_prefill",
+    "_mtp_ple_native"
+  ],
+  "mlx": "0.32.2",
+  "deferred_ple_cpu_bit_exact": true,
+  "repository_tests_passed": 14,
+  "full_model_public_clean_install_benchmark": false,
+  "production_speed_evidence": "production-generation.json",
+  "sha256": {
+    "patches/mtp.patch": "0341fb9223d3bd77878161dfe0b9ba85d80d768fd9e4c0369a82e3d87955eac7",
+    "patches/mtp-hashes.json": "cc39cdb067a01caa7cc02d88da66106d364053a2f30a35701c1c43d29334a596",
+    "native/mtp_ple_native.cpp": "58edaa87cca3c9cabaa676953970a5d949ea33175be9c872bb0b9a420d843319",
+    "native/CMakeLists.txt": "f52e57b49c755f8a94ede176063731c81ac423194cde2953fe763b82fe4eba5f",
+    "runtime/mtp_ple_hook.py": "afc3cd04529797067a1d4b419ee05718ee83a430f2ce5b22af440f49311d4c54",
+    "scripts/build.py": "7d7af038505cb7d1ff424ad13e938c4ceaba141f6fc5ccc7127b99de1cd93f7a",
+    "scripts/common.py": "fb4ebf1cb5829b2dd989163622a6b8bf7441d460c7036e48139838c62b0ccb12",
+    "scripts/numerical_checks.py": "51e77466c1e6794821c50638ee5c1b37ab929362a0c9f999a1cdebadf5a31ade",
+    "runtime/qualified-env.json": "80abff80eabaca572936044c64d08d883eeb086fd6f60f51cb80d4fae8e234c3"
+  }
+}

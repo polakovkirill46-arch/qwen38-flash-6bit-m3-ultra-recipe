@@ -22,11 +22,11 @@ def environment(path, data):
     res = Path(data['app'])/'Contents/Resources'
     env = os.environ.copy()
     for key in list(env):
-        if key.startswith(('FLASH_', 'OMLX_', 'MLX_MAX_')): env.pop(key)
+        if key.startswith(('FLASH_', 'OMLX_', 'MLX_MAX_', 'R2_')): env.pop(key)
     env.update(json.loads((REPO/'runtime/qualified-env.json').read_text()))
     env.update(FLASH_RECIPE_ROOT=str(REPO), FLASH_OMLX_SOURCE=str(path/'source'),
                FLASH_MLX_PATH=str(path/'mlx'), PYTHONHOME=str(res/'Python/cpython-3.11'),
-               PYTHONPATH=os.pathsep.join(map(str,[REPO/'runtime',path/'source',path/'mlx',res,res/'Python/framework-mlx-base/lib/python3.11/site-packages'])),
+               PYTHONPATH=os.pathsep.join(map(str,[path/'native',REPO/'runtime',path/'source',path/'mlx',res,res/'Python/framework-mlx-base/lib/python3.11/site-packages'])),
                PYTHONUNBUFFERED='1',PYTHONDONTWRITEBYTECODE='1')
     return env
 
@@ -39,6 +39,8 @@ def inventory(directory, suffixes=None):
             if p.is_file() and '__pycache__' not in p.parts and (suffixes is None or p.suffix in suffixes)}
 def runtime_snapshot(root, data):
     return {'recipe_runtime':inventory(REPO/'runtime'),
+            'recipe_native_source':inventory(REPO/'native'),
+            'deferred_ple_native':inventory(root/'native'),
             'recipe_scripts':{name:sha(REPO/'scripts'/name) for name in CORE_SCRIPTS},
             'omlx':inventory(root/'source/omlx',RUNTIME_SUFFIXES),
             'mlx':inventory(root/'mlx',RUNTIME_SUFFIXES),
@@ -80,6 +82,7 @@ def artifact_fingerprint(root,data):
 def validate_numerical_receipt(receipt,fingerprint):
     import math
     if receipt.get('success') is not True or receipt.get('artifact_fingerprint')!=fingerprint:raise RuntimeError('Numerical receipt is unsuccessful or stale')
+    if receipt.get('deferred_ple_bit_exact') is not True:raise RuntimeError('Deferred PLE check missing')
     if receipt.get('mlx')!='0.32.2' or receipt.get('weighted10_bit_exact') is not True:raise RuntimeError('Numerical receipt has invalid result fields')
     if receipt.get('native_imports')!=['decode_fast','glm_moe_dsa','qwen35_prefill']:raise RuntimeError('Native checks incomplete')
     cells=receipt.get('cells',[])

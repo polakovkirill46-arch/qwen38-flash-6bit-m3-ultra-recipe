@@ -20,3 +20,9 @@ Grok CLI searched X for related recipes and kernel work. Source files and primar
 The grouped RMS algorithm, ANE offload and MTP are not new. The helpers use experimental private ANE APIs through oMLX. The overall arithmetic is not lossless: ANE working copies and normalization reduction order can change outputs. No universal speed or quality claim is made.
 
 Target provenance was checked against local download metadata and the Hugging Face API: `orcarouter/Qwen3.8-Flash-Next-Uncensored-MLX`, revision `b44cd3338291ed8f7d0357198de9e14483023f7d`, subdirectory `6-bit`. The donor is pinned to historical revision `29ba90f82124961d0d902a9ea9bbb1034972af2f`, file `mtp.safetensors`. Its Hugging Face LFS SHA256 matches the input enforced in `prepare_model.py`: `3498cbee477938de1dd3a42242387bb8fa6ad921053af010543473ab020f717c`. Local download metadata and the public repository tree independently identify these bytes.
+
+## Production MTP update
+
+Deferred PLE lookup follows an existing idea in [mlx-serve PR350](https://github.com/ddalcu/mlx-serve/pull/350), David Dalcu. This implementation uses a separately written, read-only mmap row gather scheduled as an MLX CPU primitive; its scheduling pattern is adapted from Apple's MIT-licensed MLX extension example. The source retains those credits. Compiled verification HC has related prior work in [MTPLX PR391](https://github.com/youssofal/MTPLX/pull/391). Fixed MTP depth is a serving configuration choice. We claim the tested integration and measured profile, not invention of these techniques.
+
+The additional14.7–15.2% production generation result uses a working MTP baseline and five matched requests per workload against before/after controls. It adds no prefill improvement claim and no broad quality-equivalence claim. Stored target weights are unchanged; compiled HC can alter outputs.

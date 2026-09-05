@@ -29,7 +29,22 @@ def checks():
     x=mx.random.normal((t*10,1,d)).astype(mx.bfloat16)
     ref=(x[order].reshape(1,t,10,d)*scores[...,None]).sum(-2);out=weighted_sum(x,order,scores.astype(mx.float32))
     if not mx.array_equal(ref,out).item():raise RuntimeError('Expert reduction parity failed')
-    return {'mlx':mx.__version__,'native_imports':['decode_fast','glm_moe_dsa','qwen35_prefill'],'cells':rows,'weighted10_bit_exact':True}
+    # Two synthetic BF16 shards, cross-shard IDs and a strided ID view.
+    import tempfile
+    import _mtp_ple_native as ple
+    if ple.BUILT_AGAINST_MLX!='0.32.2':raise RuntimeError('Deferred PLE ABI mismatch')
+    with tempfile.TemporaryDirectory() as directory:
+        import numpy as np
+        f32=np.arange(48,dtype=np.float32).reshape(12,4)
+        raw=(f32.view(np.uint32)>>16).astype(np.uint16).tobytes()
+        bank_rows=mx.array(f32).astype(mx.bfloat16)
+        left=Path(directory)/'left';right=Path(directory)/'right'
+        left.write_bytes(raw[:5*4*2]);right.write_bytes(raw[5*4*2:])
+        bank=ple.Bank([str(left),str(right)],[0,0],[5,7],4)
+        ids=mx.array([11,0,4,5,5,3,2,10],dtype=mx.int32)[::2]
+        gathered=ple.gather(bank,ids);expected=bank_rows[ids]
+        if not mx.array_equal(gathered,expected).item():raise RuntimeError('Deferred PLE parity failed')
+    return {'mlx':mx.__version__,'native_imports':['decode_fast','glm_moe_dsa','qwen35_prefill'],'cells':rows,'weighted10_bit_exact':True,'deferred_ple_bit_exact':True}
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--state',required=True,type=Path);p.add_argument('--worker',action='store_true');a=p.parse_args();root,data=state(a.state)

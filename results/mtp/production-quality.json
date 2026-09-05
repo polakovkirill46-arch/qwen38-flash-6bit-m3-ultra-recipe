@@ -1,0 +1,514 @@
+{
+  "label": "production",
+  "port": 8002,
+  "rows": [
+    {
+      "case": "arithmetic",
+      "run": 0,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-298fd14b",
+        "object": "chat.completion",
+        "created": 1788569460,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"answer\": 432}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 75,
+          "completion_tokens": 8,
+          "total_tokens": 83,
+          "input_tokens": 75,
+          "output_tokens": 8,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.64
+        }
+      }
+    },
+    {
+      "case": "arithmetic",
+      "run": 1,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-bc5ce634",
+        "object": "chat.completion",
+        "created": 1788569460,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"answer\": 432}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 70,
+          "completion_tokens": 8,
+          "total_tokens": 78,
+          "input_tokens": 70,
+          "output_tokens": 8,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.59
+        }
+      }
+    },
+    {
+      "case": "arithmetic",
+      "run": 2,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-679a63a5",
+        "object": "chat.completion",
+        "created": 1788569461,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"answer\": 432}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 69,
+          "completion_tokens": 8,
+          "total_tokens": 77,
+          "input_tokens": 69,
+          "output_tokens": 8,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.59
+        }
+      }
+    },
+    {
+      "case": "sort",
+      "run": 0,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-12277027",
+        "object": "chat.completion",
+        "created": 1788569462,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "[-1, 0, 2, 7, 9]"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 74,
+          "completion_tokens": 15,
+          "total_tokens": 89,
+          "input_tokens": 74,
+          "output_tokens": 15,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.7
+        }
+      }
+    },
+    {
+      "case": "sort",
+      "run": 1,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-44e3a123",
+        "object": "chat.completion",
+        "created": 1788569462,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "[-1, 0, 2, 7, 9]"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 78,
+          "completion_tokens": 15,
+          "total_tokens": 93,
+          "input_tokens": 78,
+          "output_tokens": 15,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.7
+        }
+      }
+    },
+    {
+      "case": "sort",
+      "run": 2,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-1c701656",
+        "object": "chat.completion",
+        "created": 1788569463,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "[-1, 0, 2, 7, 9]"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 74,
+          "completion_tokens": 15,
+          "total_tokens": 89,
+          "input_tokens": 74,
+          "output_tokens": 15,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.69
+        }
+      }
+    },
+    {
+      "case": "extract",
+      "run": 0,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-1db8e462",
+        "object": "chat.completion",
+        "created": 1788569464,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"name\": \"Rhea\",\n  \"amount\": 247\n}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 81,
+          "completion_tokens": 21,
+          "total_tokens": 102,
+          "input_tokens": 81,
+          "output_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.75
+        }
+      }
+    },
+    {
+      "case": "extract",
+      "run": 1,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-ce1d0c95",
+        "object": "chat.completion",
+        "created": 1788569464,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"name\": \"Rhea\",\n  \"amount\": 247\n}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 80,
+          "completion_tokens": 21,
+          "total_tokens": 101,
+          "input_tokens": 80,
+          "output_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.76
+        }
+      }
+    },
+    {
+      "case": "extract",
+      "run": 2,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-78bb77ec",
+        "object": "chat.completion",
+        "created": 1788569465,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"name\": \"Rhea\",\n  \"amount\": 247\n}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 80,
+          "completion_tokens": 21,
+          "total_tokens": 101,
+          "input_tokens": 80,
+          "output_tokens": 21,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 0.75
+        }
+      }
+    },
+    {
+      "case": "recall",
+      "run": 0,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-cf510d1e",
+        "object": "chat.completion",
+        "created": 1788569476,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"marker\": \"cedar-7391\"\n}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 10875,
+          "completion_tokens": 17,
+          "total_tokens": 10892,
+          "input_tokens": 10875,
+          "output_tokens": 17,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 11.18
+        }
+      }
+    },
+    {
+      "case": "recall",
+      "run": 1,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-c37fdb5b",
+        "object": "chat.completion",
+        "created": 1788569488,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"marker\": \"cedar-7391\"\n}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 10875,
+          "completion_tokens": 17,
+          "total_tokens": 10892,
+          "input_tokens": 10875,
+          "output_tokens": 17,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 11.15
+        }
+      }
+    },
+    {
+      "case": "recall",
+      "run": 2,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-cdd05606",
+        "object": "chat.completion",
+        "created": 1788569499,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"marker\": \"cedar-7391\"\n}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 10876,
+          "completion_tokens": 17,
+          "total_tokens": 10893,
+          "input_tokens": 10876,
+          "output_tokens": 17,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 11.15
+        }
+      }
+    },
+    {
+      "case": "tool",
+      "run": 0,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-aff9aed4",
+        "object": "chat.completion",
+        "created": 1788569500,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "id": "call_f037ee21",
+                  "type": "function",
+                  "function": {
+                    "name": "get_weather",
+                    "arguments": "{\"city\": \"Tokyo\", \"units\": \"celsius\"}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 360,
+          "completion_tokens": 39,
+          "total_tokens": 399,
+          "input_tokens": 360,
+          "output_tokens": 39,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 1.36
+        }
+      }
+    },
+    {
+      "case": "tool",
+      "run": 1,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-983b2028",
+        "object": "chat.completion",
+        "created": 1788569502,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "I'll get the weather for Tokyo in celsius.",
+              "tool_calls": [
+                {
+                  "id": "call_49a86178",
+                  "type": "function",
+                  "function": {
+                    "name": "get_weather",
+                    "arguments": "{\"city\": \"Tokyo\", \"units\": \"celsius\"}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 356,
+          "completion_tokens": 51,
+          "total_tokens": 407,
+          "input_tokens": 356,
+          "output_tokens": 51,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 1.56
+        }
+      }
+    },
+    {
+      "case": "tool",
+      "run": 2,
+      "pass": true,
+      "response": {
+        "id": "chatcmpl-053e8dde",
+        "object": "chat.completion",
+        "created": 1788569503,
+        "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "id": "call_a4e91f9b",
+                  "type": "function",
+                  "function": {
+                    "name": "get_weather",
+                    "arguments": "{\"city\": \"Tokyo\", \"units\": \"celsius\"}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 359,
+          "completion_tokens": 39,
+          "total_tokens": 398,
+          "input_tokens": 359,
+          "output_tokens": 39,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_time": 1.36
+        }
+      }
+    }
+  ]
+}

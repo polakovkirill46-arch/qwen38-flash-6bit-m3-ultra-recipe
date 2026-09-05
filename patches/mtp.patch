@@ -1,0 +1,78 @@
+--- a/omlx/patches/mlx_lm_mtp/batch_generator.py
++++ b/omlx/patches/mlx_lm_mtp/batch_generator.py
+@@ -1605,6 +1605,18 @@
+         if getattr(candidate, "_omlx_mtp_chain", False):
+             depth = int(getattr(candidate, "_omlx_mtp_depth", 1) or 1)
+             head_clone = bool(getattr(candidate, "_omlx_mtp_head_clone", False))
++            # FLASH_MTP_EXPERIMENT: max-depth override keeps upstream controller.
++            import os
++            override = os.environ.get("FLASH_MTP_MAX_DEPTH")
++            if override is not None:
++                depth = int(override)
++                if not 1 <= depth <= 8:
++                    raise ValueError("FLASH_MTP_MAX_DEPTH must be 1..8")
++            fixed = os.environ.get("FLASH_MTP_FIXED_DEPTH")
++            if fixed is not None:
++                depth = int(fixed)
++                if not 1 <= depth <= 8:
++                    raise ValueError("FLASH_MTP_FIXED_DEPTH must be 1..8")
+             return True, max(1, min(8, depth)), head_clone
+     return False, 1, False
+ 
+@@ -2482,7 +2494,10 @@
+         state.chain = True
+         state.depth = depth
+         state.head_clone = head_clone
+-        if depth > 1:
++        # FLASH_MTP_EXPERIMENT: fixed depth bypasses only the depth controller.
++        # The existing draft/verify, acceptance, sampling and rollback stay intact.
++        import os
++        if depth > 1 and os.environ.get("FLASH_MTP_FIXED_DEPTH") is None:
+             state.controller = _DepthController(
+                 depth,
+                 marginal_ms=getattr(
+@@ -3126,6 +3141,13 @@
+             was_warmup=was_warmup,
+         )
+ 
++    # Diagnostic only: never score traced runs as throughput measurements.
++    import os
++    if os.environ.get("FLASH_MTP_TRACE", "0") == "1":
++        logger.info("FLASH_MTP_CYCLE uid=%s k=%d accepted=%d elapsed_ms=%.3f next_k=%d",
++                    state.uid, k, m, (time.perf_counter()-cycle_t0)*1000,
++                    state.controller.cur if state.controller is not None else state.depth)
++
+ 
+ def _materialize_mtp_boundary_emit(gen_batch: Any, state: _MtpState) -> None:
+     """Commit a queued verify/bonus boundary token before it is emitted.
+--- a/omlx/patches/mlx_vlm_qwen4_exp_compat/vendor/mlx_vlm/models/qwen4_exp/language.py
++++ b/omlx/patches/mlx_vlm_qwen4_exp_compat/vendor/mlx_vlm/models/qwen4_exp/language.py
+@@ -1396,6 +1396,16 @@
+             )
+ 
+     def __call__(self, hyper_input: mx.array, target_verify: bool = False):
++        # FLASH_MTP_EXPERIMENT: compile the pure HC stage at tiny verify widths.
++        # Preserve target_verify=True; do not engage approximate prefill branches.
++        if (os.environ.get("FLASH_MTP_COMPILE_HC", "0") == "1" and target_verify
++                and hyper_input.ndim == 3 and hyper_input.shape[0] == 1
++                and 2 <= hyper_input.shape[1] <= 9):
++            compiled = getattr(self, "_flash_mtp_forward", None)
++            if compiled is None:
++                compiled = mx.compile(lambda x: self._forward(x, target_verify=True))
++                self._flash_mtp_forward = compiled
++            return compiled(hyper_input)
+         if (os.environ.get("FLASH_COMPILE_HC", "0") == "1" and not target_verify
+                 and hyper_input.ndim == 3 and hyper_input.shape[1] >= 1024):
+             compiled = getattr(self, "_flash_prefill_forward", None)
+@@ -1869,6 +1879,11 @@
+             )
+ 
+     def _fast_dense_bf16(self, indices: mx.array) -> mx.array:
++        if os.environ.get("FLASH_MTP_PLE_DEFER", "0") == "1" and 0 < indices.size <= 256:
++            from omlx.patches.qwen35_verify_qmm import _is_armed
++            if _is_armed():
++                from mtp_ple_hook import gather
++                return gather(self, indices)
+         # Keep the exact checkpoint BF16 bits until the single upload.
+         shape = indices.shape
+         flat = indices.reshape(-1)

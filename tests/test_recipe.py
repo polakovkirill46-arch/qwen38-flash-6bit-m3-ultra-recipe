@@ -24,7 +24,7 @@ class RecipeTests(unittest.TestCase):
         check_port('127.0.0.1',port)
     def test_numerical_receipt_rejects_stale_or_fake_success(self):
         good={'success':True,'artifact_fingerprint':'abc','mlx':'0.32.2','weighted10_bit_exact':True,
-              'native_imports':['decode_fast','glm_moe_dsa','qwen35_prefill'],
+              'deferred_ple_bit_exact':True,'native_imports':['decode_fast','glm_moe_dsa','qwen35_prefill'],
               'cells':[{'tokens':t,'mix_bit_exact':True,'normalization_relative_rms':0.0} for t in [3256,8192]]}
         validate_numerical_receipt(good,'abc')
         for updates in [{'success':False},{'artifact_fingerprint':'old'},{'cells':[]},{'weighted10_bit_exact':False}]:

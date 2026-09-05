@@ -11,3 +11,5 @@ Recipe code is licensed under Apache-2.0. This does not relicense dependencies o
 The ANE adapter is adapted from oMLX PR3298 by onthehub97 and uses the existing ANE/CPU backend from PR2853. HC/grouped RMS fusion has prior implementations in MTPLX PR391. These are credited techniques, not inventions claimed by this recipe. See PROVENANCE.md for source links.
 
 The target model card labels itself Apache-2.0, while upstream Qwen and the donor use Qwen Community License 1.0. Obtain the tensors yourself under the applicable terms. No software license in this repository grants additional model rights. No Apple framework binaries or application bundle are distributed.
+
+The deferred PLE native extension in `native/` adapts the CPU primitive scheduling pattern from Apple MLX examples (Copyright2023–2025 Apple Inc., MIT); retain `licenses/MLX-MIT.txt`. Deferred PLE motivation is credited to David Dalcu / mlx-serve PR350 (MIT). No mutable unfilled-leaf implementation was copied. See the source header and PROVENANCE.md.

@@ -1,0 +1,261 @@
+{
+  "label": "production",
+  "endpoint": "http://127.0.0.1:8002/v1/chat/completions",
+  "model": "Qwen3.8-Flash-Next-Uncensored-MLX-6bit",
+  "started": 1788569286.61818,
+  "tokens": 256,
+  "cells": {
+    "2048": {
+      "rows": [
+        {
+          "ttft_s": 3.5473117500000004,
+          "total_s": 7.052442291,
+          "prompt_tokens": 3269,
+          "completion_tokens": 256,
+          "prefill_tps": 921.542912037545,
+          "decode_tps": 72.75050016460999,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3269,
+            "completion_tokens": 256,
+            "total_tokens": 3525,
+            "input_tokens": 3269,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.53,
+            "total_time": 7.04,
+            "prompt_eval_duration": 3.53,
+            "generation_duration": 3.51,
+            "prompt_tokens_per_second": 925.52,
+            "generation_tokens_per_second": 72.9
+          },
+          "prompt_nonce": "1554cd7b1e1f5c09b434a57b2ea64275"
+        },
+        {
+          "ttft_s": 3.5536910829999986,
+          "total_s": 7.043982291000001,
+          "prompt_tokens": 3266,
+          "completion_tokens": 256,
+          "prefill_tps": 919.0444311898005,
+          "decode_tps": 73.05980641830728,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3266,
+            "completion_tokens": 256,
+            "total_tokens": 3522,
+            "input_tokens": 3266,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.54,
+            "total_time": 7.04,
+            "prompt_eval_duration": 3.54,
+            "generation_duration": 3.5,
+            "prompt_tokens_per_second": 922.99,
+            "generation_tokens_per_second": 73.21
+          },
+          "prompt_nonce": "70069ffdb8ce5f30bad047d86f7d6126"
+        },
+        {
+          "ttft_s": 3.6373464589999998,
+          "total_s": 7.063246792000001,
+          "prompt_tokens": 3268,
+          "completion_tokens": 256,
+          "prefill_tps": 898.4571683882039,
+          "decode_tps": 74.43298847421546,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 3268,
+            "completion_tokens": 256,
+            "total_tokens": 3524,
+            "input_tokens": 3268,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 3.57,
+            "total_time": 7.05,
+            "prompt_eval_duration": 3.57,
+            "generation_duration": 3.49,
+            "prompt_tokens_per_second": 915.67,
+            "generation_tokens_per_second": 73.45
+          },
+          "prompt_nonce": "49e6dbfb64325f239dca69d68495992d"
+        }
+      ],
+      "warmup": {
+        "ttft_s": 3.7228246670000003,
+        "total_s": 7.209859292,
+        "prompt_tokens": 3267,
+        "completion_tokens": 256,
+        "prefill_tps": 877.5594588054232,
+        "decode_tps": 73.12803783816744,
+        "chunks": 33,
+        "finish": "length",
+        "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+        "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+        "usage": {
+          "prompt_tokens": 3267,
+          "completion_tokens": 256,
+          "total_tokens": 3523,
+          "input_tokens": 3267,
+          "output_tokens": 256,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "time_to_first_token": 3.69,
+          "total_time": 7.18,
+          "prompt_eval_duration": 3.69,
+          "generation_duration": 3.5,
+          "prompt_tokens_per_second": 886.48,
+          "generation_tokens_per_second": 73.22
+        },
+        "prompt_nonce": "b8117dd3bde450248f6aa290a3445981"
+      },
+      "medians": {
+        "prefill_tps": 919.0444311898005,
+        "decode_tps": 73.05980641830728,
+        "ttft_s": 3.5536910829999986,
+        "prompt_tokens": 3268
+      }
+    },
+    "8192": {
+      "rows": [
+        {
+          "ttft_s": 12.570302667,
+          "total_s": 16.209811457999997,
+          "prompt_tokens": 12489,
+          "completion_tokens": 256,
+          "prefill_tps": 993.5321631345092,
+          "decode_tps": 70.06440007249874,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12489,
+            "completion_tokens": 256,
+            "total_tokens": 12745,
+            "input_tokens": 12489,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.54,
+            "total_time": 16.19,
+            "prompt_eval_duration": 12.54,
+            "generation_duration": 3.65,
+            "prompt_tokens_per_second": 995.7,
+            "generation_tokens_per_second": 70.22
+          },
+          "prompt_nonce": "ca5ff52a465457f3b9abde9ec52f42ef"
+        },
+        {
+          "ttft_s": 12.601568541999995,
+          "total_s": 16.237979249999995,
+          "prompt_tokens": 12494,
+          "completion_tokens": 256,
+          "prefill_tps": 991.4638767672867,
+          "decode_tps": 70.12409226466286,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12494,
+            "completion_tokens": 256,
+            "total_tokens": 12750,
+            "input_tokens": 12494,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.57,
+            "total_time": 16.22,
+            "prompt_eval_duration": 12.57,
+            "generation_duration": 3.64,
+            "prompt_tokens_per_second": 993.76,
+            "generation_tokens_per_second": 70.28
+          },
+          "prompt_nonce": "8aa9688870e75739b97e8c9ae02670c5"
+        },
+        {
+          "ttft_s": 12.616341000000006,
+          "total_s": 16.229048332999994,
+          "prompt_tokens": 12494,
+          "completion_tokens": 256,
+          "prefill_tps": 990.3029729459591,
+          "decode_tps": 70.58418424064487,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+          "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+          "usage": {
+            "prompt_tokens": 12494,
+            "completion_tokens": 256,
+            "total_tokens": 12750,
+            "input_tokens": 12494,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 12.59,
+            "total_time": 16.21,
+            "prompt_eval_duration": 12.59,
+            "generation_duration": 3.62,
+            "prompt_tokens_per_second": 992.64,
+            "generation_tokens_per_second": 70.73
+          },
+          "prompt_nonce": "0a1d4f7c0433598884ce9698406d26ff"
+        }
+      ],
+      "warmup": {
+        "ttft_s": 12.601715291999998,
+        "total_s": 16.234804208000003,
+        "prompt_tokens": 12494,
+        "completion_tokens": 256,
+        "prefill_tps": 991.4523309324105,
+        "decode_tps": 70.18820785722812,
+        "chunks": 33,
+        "finish": "length",
+        "text_head": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping pin",
+        "text": "X ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping ping",
+        "usage": {
+          "prompt_tokens": 12494,
+          "completion_tokens": 256,
+          "total_tokens": 12750,
+          "input_tokens": 12494,
+          "output_tokens": 256,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "time_to_first_token": 12.57,
+          "total_time": 16.21,
+          "prompt_eval_duration": 12.57,
+          "generation_duration": 3.64,
+          "prompt_tokens_per_second": 993.65,
+          "generation_tokens_per_second": 70.33
+        },
+        "prompt_nonce": "286bc16a1c1d57af8e5f151d23a81860"
+      },
+      "medians": {
+        "prefill_tps": 991.4638767672867,
+        "decode_tps": 70.12409226466286,
+        "ttft_s": 12.601568541999995,
+        "prompt_tokens": 12494
+      }
+    }
+  }
+}

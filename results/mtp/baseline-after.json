@@ -1,0 +1,457 @@
+{
+  "label": "confirm-baseline-post",
+  "port": 8024,
+  "prompt_seed": "r2-confirm-20260904-v1",
+  "cases": {
+    "code": {
+      "rows": [
+        {
+          "ttft_s": 0.5958947080000003,
+          "total_s": 4.669645416000001,
+          "prompt_tokens": 77,
+          "completion_tokens": 256,
+          "prefill_tps": 129.21745900116292,
+          "decode_tps": 62.59587743040657,
+          "chunks": 36,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parse a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple_csv(self):\n        csv_data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_quoted_fields(self):\n        csv_data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_escaped_quotes(self):\n        csv_data = '\"He said \"\"Hello\"\"\",b,c'\n        expected = [['He said \"Hello\"', 'b', 'c']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_comma_in_quotes(self",
+          "usage": {
+            "prompt_tokens": 77,
+            "completion_tokens": 256,
+            "total_tokens": 333,
+            "input_tokens": 77,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.59,
+            "total_time": 4.67,
+            "prompt_eval_duration": 0.59,
+            "generation_duration": 4.07,
+            "prompt_tokens_per_second": 130.2,
+            "generation_tokens_per_second": 62.84
+          },
+          "prompt_nonce": "edaa62d4dd365680ae70ab057a687e33"
+        },
+        {
+          "ttft_s": 0.6045630830000004,
+          "total_s": 4.667350792000001,
+          "prompt_tokens": 78,
+          "completion_tokens": 256,
+          "prefill_tps": 129.01879422233915,
+          "decode_tps": 62.76478572461882,
+          "chunks": 37,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple(self):\n        data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(data), expected)\n\n    def test_quoted_fields(self):\n        data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(data), expected)\n\n    def test_escaped_quotes(self):\n        data = '\"a\"\"b\",c\\n\"d\"\"e\",f'\n        expected = [['a\"b', 'c'], ['d\"e', 'f']]\n        self.assertEqual(parse_csv(data), expected)\n\n    def test_commas_in_quotes(self",
+          "usage": {
+            "prompt_tokens": 78,
+            "completion_tokens": 256,
+            "total_tokens": 334,
+            "input_tokens": 78,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 4.66,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 4.06,
+            "prompt_tokens_per_second": 130.0,
+            "generation_tokens_per_second": 63.0
+          },
+          "prompt_nonce": "2ca815ebb3cb5a9b8e1a653e4149ca6b"
+        },
+        {
+          "ttft_s": 0.5917696250000013,
+          "total_s": 4.728843584000002,
+          "prompt_tokens": 76,
+          "completion_tokens": 256,
+          "prefill_tps": 128.4283558825782,
+          "decode_tps": 61.637766819531976,
+          "chunks": 36,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple_csv(self):\n        csv_data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_quoted_fields(self):\n        csv_data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_escaped_quotes(self):\n        csv_data = '\"He said, \"\"Hello\"\"\",b,c'\n        expected = [['He said, \"Hello\"', 'b', 'c']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_commas_in",
+          "usage": {
+            "prompt_tokens": 76,
+            "completion_tokens": 256,
+            "total_tokens": 332,
+            "input_tokens": 76,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.59,
+            "total_time": 4.72,
+            "prompt_eval_duration": 0.59,
+            "generation_duration": 4.14,
+            "prompt_tokens_per_second": 129.38,
+            "generation_tokens_per_second": 61.87
+          },
+          "prompt_nonce": "6b5cb84ba2c95bcbbda0d100bc23ce8a"
+        },
+        {
+          "ttft_s": 0.5958477910000006,
+          "total_s": 4.660519915999998,
+          "prompt_tokens": 81,
+          "completion_tokens": 256,
+          "prefill_tps": 135.94075739386255,
+          "decode_tps": 62.73568744490065,
+          "chunks": 37,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple_csv(self):\n        csv_data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_quoted_fields(self):\n        csv_data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_escaped_double_quotes(self):\n        csv_data = '\"He said, \"\"Hello\"\"\",b,c'\n        expected = [['He said, \"Hello\"', 'b', 'c']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_comma",
+          "usage": {
+            "prompt_tokens": 81,
+            "completion_tokens": 256,
+            "total_tokens": 337,
+            "input_tokens": 81,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.59,
+            "total_time": 4.66,
+            "prompt_eval_duration": 0.59,
+            "generation_duration": 4.07,
+            "prompt_tokens_per_second": 137.0,
+            "generation_tokens_per_second": 62.98
+          },
+          "prompt_nonce": "4b1da74390a65f72b54be26d311b1c7b"
+        },
+        {
+          "ttft_s": 0.6033972920000004,
+          "total_s": 4.732367749999998,
+          "prompt_tokens": 81,
+          "completion_tokens": 256,
+          "prefill_tps": 134.23991302897653,
+          "decode_tps": 61.75873685555929,
+          "chunks": 36,
+          "finish": "length",
+          "text_head": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Par",
+          "text": "import csv\nimport io\nimport unittest\n\ndef parse_csv(csv_string):\n    \"\"\"\n    Parses a CSV string into a list of lists.\n    Supports quoted fields and escaped double quotes (\"\" inside quotes).\n    \"\"\"\n    reader = csv.reader(io.StringIO(csv_string))\n    return [row for row in reader]\n\nclass TestCSVParser(unittest.TestCase):\n    def test_simple_csv(self):\n        csv_data = \"a,b,c\\n1,2,3\"\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_quoted_fields(self):\n        csv_data = '\"a\",\"b\",\"c\"\\n\"1\",\"2\",\"3\"'\n        expected = [['a', 'b', 'c'], ['1', '2', '3']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_escaped_quotes(self):\n        csv_data = '\"He said, \"\"Hello\"\"\",b,c'\n        expected = [['He said, \"Hello\"', 'b', 'c']]\n        self.assertEqual(parse_csv(csv_data), expected)\n\n    def test_comma_in",
+          "usage": {
+            "prompt_tokens": 81,
+            "completion_tokens": 256,
+            "total_tokens": 337,
+            "input_tokens": 81,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 4.73,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 4.13,
+            "prompt_tokens_per_second": 135.22,
+            "generation_tokens_per_second": 62.0
+          },
+          "prompt_nonce": "82d603b203895fb19fe7b7418790303e"
+        }
+      ],
+      "median_decode_tps": 62.59587743040657
+    },
+    "prose": {
+      "rows": [
+        {
+          "ttft_s": 0.6163094579999964,
+          "total_s": 5.951512665999999,
+          "prompt_tokens": 87,
+          "completion_tokens": 256,
+          "prefill_tps": 141.1628506924528,
+          "decode_tps": 47.7957427409014,
+          "chunks": 40,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first grasp the inefficiency of a full table scan. Without an index, if you ask a database to find a specific record, such as a user with the email \"john.doe@example.com,\" the database engine must read every single row in the table from start to finish until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database to jump directly to the relevant data, much like the index at the back of a textbook allows you to find a topic without reading every page.\n\nThe most common type of index is the B-Tree (or its variant, the B+Tree). This structure organizes data in a balanced tree hierarchy. When performing a **lookup** for a specific value, the database starts at the root node of the tree and compares the search key with the values in the node. Based on the",
+          "usage": {
+            "prompt_tokens": 87,
+            "completion_tokens": 256,
+            "total_tokens": 343,
+            "input_tokens": 87,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.61,
+            "total_time": 5.95,
+            "prompt_eval_duration": 0.61,
+            "generation_duration": 5.34,
+            "prompt_tokens_per_second": 142.15,
+            "generation_tokens_per_second": 47.98
+          },
+          "prompt_nonce": "6f6b66c0d60a50419735b3be08198903"
+        },
+        {
+          "ttft_s": 0.6099752909999978,
+          "total_s": 6.008213458,
+          "prompt_tokens": 86,
+          "completion_tokens": 256,
+          "prefill_tps": 140.9893175492584,
+          "decode_tps": 47.23763422644851,
+          "chunks": 41,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first grasp the inefficiency of a full table scan. Without an index, if you ask a database to find a specific record, such as a user with the email \"john.doe@example.com,\" the database engine must read every single row in the table from start to finish until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database to jump directly to the relevant data, much like the index at the back of a textbook allows you to find a topic without reading every page.\n\nThe most common type of index is the B-Tree (or its variant, the B+Tree). This structure organizes data in a balanced tree format, where each node contains a subset of keys and pointers to child nodes. When performing a **lookup** for a specific value, the database starts at the root node and compares the search",
+          "usage": {
+            "prompt_tokens": 86,
+            "completion_tokens": 256,
+            "total_tokens": 342,
+            "input_tokens": 86,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.61,
+            "total_time": 6.0,
+            "prompt_eval_duration": 0.61,
+            "generation_duration": 5.4,
+            "prompt_tokens_per_second": 141.96,
+            "generation_tokens_per_second": 47.42
+          },
+          "prompt_nonce": "3916e61a5ef55fd8b25542e696f0c50a"
+        },
+        {
+          "ttft_s": 0.6267315000000053,
+          "total_s": 5.912139625000002,
+          "prompt_tokens": 87,
+          "completion_tokens": 256,
+          "prefill_tps": 138.8154257445162,
+          "decode_tps": 48.24603776458609,
+          "chunks": 43,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first grasp the inefficiency of a full table scan. Without an index, if you ask a database to find a specific record, such as a user with the email \"john.doe@example.com,\" the database engine must read every single row in the table from start to finish until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database to jump directly to the relevant data, much like the index at the back of a textbook allows you to find a topic without reading every page.\n\nThe most common type of index is the B-Tree (or its variant, the B+Tree). This structure organizes data in a balanced tree hierarchy. When performing a **lookup** for a specific value, the database starts at the root node of the tree and compares the search key with the values in the node. Based on the",
+          "usage": {
+            "prompt_tokens": 87,
+            "completion_tokens": 256,
+            "total_tokens": 343,
+            "input_tokens": 87,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.62,
+            "total_time": 5.91,
+            "prompt_eval_duration": 0.62,
+            "generation_duration": 5.29,
+            "prompt_tokens_per_second": 139.75,
+            "generation_tokens_per_second": 48.43
+          },
+          "prompt_nonce": "7146f68624b05f0181f95984cb4d4b3b"
+        },
+        {
+          "ttft_s": 0.6055520419999993,
+          "total_s": 6.043309416999996,
+          "prompt_tokens": 83,
+          "completion_tokens": 256,
+          "prefill_tps": 137.0650154623706,
+          "decode_tps": 46.89433205908716,
+          "chunks": 43,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, it is helpful to compare a database table to a book. Without an index, finding a specific piece of information requires reading every single page from start to finish, a process known as a full table scan. An index, much like the index at the back of a textbook, provides a sorted list of keywords along with pointers to the specific pages where those keywords appear. This allows the database engine to jump directly to the relevant data rather than scanning the entire dataset.\n\nThe most common type of index is the B-Tree (or its variant, the B+Tree). This structure is balanced, meaning that the path from the root node to any leaf node is roughly the same length. This balance ensures that lookup times remain consistent and predictable, typically operating in logarithmic time complexity, denoted as O(log n). When a query requests a specific record, such as finding a user by their unique ID, the database traverses the B-Tree from the root down to the leaf node. At each level, it compares the search key with the values in the node to decide which branch to follow.",
+          "usage": {
+            "prompt_tokens": 83,
+            "completion_tokens": 256,
+            "total_tokens": 339,
+            "input_tokens": 83,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 6.04,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 5.44,
+            "prompt_tokens_per_second": 138.04,
+            "generation_tokens_per_second": 47.08
+          },
+          "prompt_nonce": "fc4d384fa10253219b1e49fbe69d4412"
+        },
+        {
+          "ttft_s": 0.6033065000000022,
+          "total_s": 5.808101000000008,
+          "prompt_tokens": 82,
+          "completion_tokens": 256,
+          "prefill_tps": 135.9176471660751,
+          "decode_tps": 48.99328878402399,
+          "chunks": 42,
+          "finish": "length",
+          "text_head": "A database index is fundamentally a data structure that improves the speed of da",
+          "text": "A database index is fundamentally a data structure that improves the speed of data retrieval operations on a database table at the cost of additional writes and storage space. To understand how it works, one must first appreciate the inefficiency of a full table scan. Without an index, if a user requests a specific record, the database engine must read every single row in the table sequentially until it finds a match. This process, known as a linear search, has a time complexity of O(n), meaning the time required grows linearly with the number of rows. For a table with millions of records, this is prohibitively slow. An index solves this by creating a separate, optimized structure that allows the database to locate data much faster, typically reducing the time complexity to O(log n) or even O(1) depending on the index type.\n\nThe most common index structure is the B-Tree (or its variant, the B+Tree). Imagine a dictionary: you do not read every page to find the word \"apple.\" Instead, you look at the first letter, then the second, and so on, narrowing down the location rapidly. A B-Tree index works similarly. It maintains a sorted tree structure where each node contains keys and pointers to child nodes. When performing a **",
+          "usage": {
+            "prompt_tokens": 82,
+            "completion_tokens": 256,
+            "total_tokens": 338,
+            "input_tokens": 82,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.6,
+            "total_time": 5.8,
+            "prompt_eval_duration": 0.6,
+            "generation_duration": 5.21,
+            "prompt_tokens_per_second": 136.86,
+            "generation_tokens_per_second": 49.18
+          },
+          "prompt_nonce": "f2ad09adae3e5252a31ddc713c0792ba"
+        }
+      ],
+      "median_decode_tps": 47.7957427409014
+    },
+    "count": {
+      "rows": [
+        {
+          "ttft_s": 0.5788001669999971,
+          "total_s": 4.1725809579999975,
+          "prompt_tokens": 71,
+          "completion_tokens": 256,
+          "prefill_tps": 122.66755272031625,
+          "decode_tps": 70.95591379379711,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 71,
+            "completion_tokens": 256,
+            "total_tokens": 327,
+            "input_tokens": 71,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.57,
+            "total_time": 4.17,
+            "prompt_eval_duration": 0.57,
+            "generation_duration": 3.59,
+            "prompt_tokens_per_second": 123.59,
+            "generation_tokens_per_second": 71.23
+          },
+          "prompt_nonce": "ec8ed9fef2835900aa44e1ee7a41092c"
+        },
+        {
+          "ttft_s": 0.5836252499999972,
+          "total_s": 4.172613416999994,
+          "prompt_tokens": 73,
+          "completion_tokens": 256,
+          "prefill_tps": 125.0802634053279,
+          "decode_tps": 71.05066613054683,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 73,
+            "completion_tokens": 256,
+            "total_tokens": 329,
+            "input_tokens": 73,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.58,
+            "total_time": 4.17,
+            "prompt_eval_duration": 0.58,
+            "generation_duration": 3.59,
+            "prompt_tokens_per_second": 126.0,
+            "generation_tokens_per_second": 71.32
+          },
+          "prompt_nonce": "e59bbf8ee24a5e4f9166d7f01bd9cd07"
+        },
+        {
+          "ttft_s": 0.5950480000000056,
+          "total_s": 4.193770333000003,
+          "prompt_tokens": 73,
+          "completion_tokens": 256,
+          "prefill_tps": 122.67917882254763,
+          "decode_tps": 70.85848153987048,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 73,
+            "completion_tokens": 256,
+            "total_tokens": 329,
+            "input_tokens": 73,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.59,
+            "total_time": 4.19,
+            "prompt_eval_duration": 0.59,
+            "generation_duration": 3.6,
+            "prompt_tokens_per_second": 123.61,
+            "generation_tokens_per_second": 71.13
+          },
+          "prompt_nonce": "daf433b61ee85cf9af3c6d7a611b6b2d"
+        },
+        {
+          "ttft_s": 0.5758672500000017,
+          "total_s": 4.167054583000009,
+          "prompt_tokens": 71,
+          "completion_tokens": 256,
+          "prefill_tps": 123.29230391205576,
+          "decode_tps": 71.00715622846052,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 71,
+            "completion_tokens": 256,
+            "total_tokens": 327,
+            "input_tokens": 71,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.57,
+            "total_time": 4.16,
+            "prompt_eval_duration": 0.57,
+            "generation_duration": 3.59,
+            "prompt_tokens_per_second": 124.22,
+            "generation_tokens_per_second": 71.28
+          },
+          "prompt_nonce": "32ead3979afe511cbe1803a25acccf71"
+        },
+        {
+          "ttft_s": 0.5864268330000044,
+          "total_s": 4.179782583000005,
+          "prompt_tokens": 74,
+          "completion_tokens": 256,
+          "prefill_tps": 126.18795020247555,
+          "decode_tps": 70.96430683213038,
+          "chunks": 33,
+          "finish": "length",
+          "text_head": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30",
+          "text": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 8",
+          "usage": {
+            "prompt_tokens": 74,
+            "completion_tokens": 256,
+            "total_tokens": 330,
+            "input_tokens": 74,
+            "output_tokens": 256,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "time_to_first_token": 0.58,
+            "total_time": 4.18,
+            "prompt_eval_duration": 0.58,
+            "generation_duration": 3.59,
+            "prompt_tokens_per_second": 127.11,
+            "generation_tokens_per_second": 71.24
+          },
+          "prompt_nonce": "46b897a7da8b5fb2b209d082c276dabb"
+        }
+      ],
+      "median_decode_tps": 70.96430683213038
+    }
+  }
+}
