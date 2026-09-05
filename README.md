@@ -58,6 +58,8 @@ The profile uses an 8GB paged SSD cache under the runtime state directory, no ho
 
 See [cache reproduction](docs/cache.md), [raw speed evidence](results/cache/candidate.json), and [semantic evidence](results/cache/quality-on.json). These are qualified-runtime measurements; this public cache launcher has not had a separate full-model clean-install benchmark.
 
+The cache profile was subsequently promoted on September 4, 2026. A separate **n=3 production check** measured median first-token waits of 15.396s fresh, 7.534s exact-repeat and 7.494s changed-suffix; every warm request reused 8,192 tokens and every speed request generated 256 tokens. All 21 production semantic checks passed. Normal authentication was restored and an 8,192-token cache hit was verified after a service restart. The stored target and existing kernel runtime remained unchanged. These production checks are separate from the staged n=5 comparison above. See [production timings](results/cache/production-speed.json), [quality responses](results/cache/production-quality.json), and [restart receipt](results/cache/production-receipt.json). The public launcher keeps caching opt-in.
+
 ## What you need
 
 - Apple Silicon macOS. This profile was measured on the 60-core M3 Ultra with 256 GiB memory. Other machines are unqualified.

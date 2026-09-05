@@ -71,6 +71,22 @@ class CacheTests(unittest.TestCase):
                 self.assertTrue(row['pass']);self.assertEqual(row['semantic'],row['expected'])
                 if name=='quality-off.json':self.assertEqual(row['cached_tokens'],0)
                 elif row['warm']:self.assertGreater(row['cached_tokens'],0)
+    def test_production_cache_receipt(self):
+        speed=json.loads((ROOT/'results/cache/production-speed.json').read_text())
+        quality=json.loads((ROOT/'results/cache/production-quality.json').read_text())
+        receipt=json.loads((ROOT/'results/cache/production-receipt.json').read_text())
+        self.assertTrue(speed['complete']);self.assertEqual(len(speed['rows']),3)
+        for row in speed['rows']:
+            for kind in ('cold','exact','branch'):
+                self.assertEqual(row[kind]['cached_tokens'],0 if kind=='cold' else 8192)
+                self.assertEqual(row[kind]['completion_tokens'],256)
+        self.assertTrue(quality['complete']);self.assertEqual(quality['passed'],21)
+        self.assertTrue(all(r['pass'] for r in quality['rows']))
+        self.assertTrue(receipt['persistence_restart_verified'])
+        self.assertTrue(receipt['original_auth_restored'])
+        self.assertTrue(receipt['runtime_unchanged'])
+        self.assertEqual(receipt['persisted_cache_smoke']['usage']['prompt_tokens_details']['cached_tokens'],8192)
+
     def test_portable_help(self):
         for name in ('cache_benchmark.py','cache_quality.py','compare_cache.py','cache_policy_check.py'):
             subprocess.run([sys.executable,str(ROOT/'scripts'/name),'--help'],check=True,stdout=subprocess.DEVNULL)
