@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "cpu_only": true,
+  "omlx": "0.6.4",
+  "settings_py_sha256": "d39c18519a4dd0e164e0bfe6baeb44e65a5dddb8edc8edf1bbdb1a841db3934f",
+  "cases": [
+    {
+      "enabled": true,
+      "snapshot_storage": "auto",
+      "resolved_ssd_sidecars": true,
+      "precision": "fp32"
+    },
+    {
+      "enabled": false,
+      "snapshot_storage": "auto",
+      "resolved_ssd_sidecars": false,
+      "precision": "fp32"
+    },
+    {
+      "enabled": true,
+      "snapshot_storage": "auto",
+      "resolved_ssd_sidecars": true,
+      "precision": "fp32"
+    }
+  ],
+  "note": "Actual pinned upstream CacheSettings.from_dict and GlobalSettings.save_cli_overrides, temporary directory only; no model loaded."
+}

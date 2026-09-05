@@ -48,3 +48,5 @@ To inspect the published numbers without a model:
 ```bash
 python3 scripts/compare_cache.py results/cache/baseline-before.json results/cache/candidate.json results/cache/baseline-after.json
 ```
+
+The launcher policy also passed a [CPU-only integration check](../results/cache/policy-check.json) against the pinned upstream settings code: on → off → on, preserving FP32 precision and resolving `auto` to SSD sidecars only when enabled. To rerun this check with the build environment's pinned oMLX source available on `PYTHONPATH`, execute `python3 scripts/cache_policy_check.py`. It uses a temporary settings directory and does not load a model or access your serving cache.

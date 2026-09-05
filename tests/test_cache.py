@@ -48,6 +48,21 @@ class CacheTests(unittest.TestCase):
             elif kind=='payload':bad[1]['rows'][0]['exact']['messages']=[]
             else:bad[1]['rows'][0]['branch']['text']='wrong'
             with self.assertRaises(ValueError):compare(*bad)
+    def test_comparison_rejects_invalid_measurements(self):
+        arms=[json.loads((ROOT/'results/cache'/n).read_text()) for n in ('baseline-before.json','candidate.json','baseline-after.json')]
+        for field,value in [('cached_tokens',-1),('cached_tokens',False),('prompt_tokens',42),('ttft_s',float('nan')),('total_s',float('inf')),('ttft_s',0),('total_s',-2)]:
+            bad=copy.deepcopy(arms);bad[0]['rows'][0]['cold'][field]=value
+            with self.subTest(field=field,value=value),self.assertRaises(ValueError):compare(*bad)
+        for config_model in (False,True):
+            bad=copy.deepcopy(arms)
+            if config_model:bad[1]['config']['model']='wrong-model'
+            else:
+                for row in bad[1]['rows']:
+                    for kind in ('cold','exact','branch'):
+                        for event in row[kind]['events']:
+                            if 'model' in event:event['model']='wrong-model'
+            with self.assertRaises(ValueError):compare(*bad)
+
     def test_complete_quality_evidence(self):
         for name in ('quality-off.json','quality-on.json'):
             d=json.loads((ROOT/'results/cache'/name).read_text())
@@ -57,5 +72,5 @@ class CacheTests(unittest.TestCase):
                 if name=='quality-off.json':self.assertEqual(row['cached_tokens'],0)
                 elif row['warm']:self.assertGreater(row['cached_tokens'],0)
     def test_portable_help(self):
-        for name in ('cache_benchmark.py','cache_quality.py','compare_cache.py'):
+        for name in ('cache_benchmark.py','cache_quality.py','compare_cache.py','cache_policy_check.py'):
             subprocess.run([sys.executable,str(ROOT/'scripts'/name),'--help'],check=True,stdout=subprocess.DEVNULL)
